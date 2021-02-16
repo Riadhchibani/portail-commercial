@@ -9,7 +9,9 @@ export class RightSideComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
+  
+  ingpath: string = "../../../document/images/logo.png";
+
 
 }

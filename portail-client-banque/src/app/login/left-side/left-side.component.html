@@ -1,1 +1,42 @@
-<p>left-side works!</p>
+<div class="container">
+  <h2 class="hstyle">Portail Client</h2>
+  <p></p>
+  <div class="heighthead"></div>
+  <div class="container">
+    <div class="row">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Identifiant">
+      </mat-form-field>
+    </div>
+    <div class="heig"></div>
+    <div class="row">
+      <mat-form-field class="example-full-width">
+        <input matInput type="password" placeholder="Mot de passe">
+      </mat-form-field>
+    </div>
+    <div class="heig"></div>
+    <mat-form-field appearance="fill">
+      <mat-label>Role</mat-label>
+      <mat-select>
+        <mat-option *ngFor="let item of list" [value]="item">
+          {{item}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="heig"></div>
+    <div class="row">
+      <div class="col-sm offset-2">
+        <button mat-raised-button color="primary">Connexion</button>
+      </div>
+      <div class="col-sm">
+        <button mat-stroked-button color="primary">Annuler</button>
+      </div>
+    </div>
+    <div class="heig"></div>
+    <div class="row">
+      <div class="col-12 offset-2">
+        <a href="#">Si vous avez oublié le mot de passe ou l'identifiant</a>
+      </div>
+    </div>
+  </div>
+</div>

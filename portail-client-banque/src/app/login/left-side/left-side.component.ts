@@ -9,7 +9,11 @@ export class LeftSideComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
+
+  list: string[] = [
+    "Admin",
+    "utilisateur"
+  ];
 
 }

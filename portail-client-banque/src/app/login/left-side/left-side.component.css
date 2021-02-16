@@ -1,0 +1,16 @@
+h2{
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    left: 30%;
+}
+.hstyle{
+  position: relative;
+  left: 36%;
+  font-size: 26px;
+}
+div.heig{
+  height: 30px;
+}
+div.heighthead{
+  height: 50px;
+}
