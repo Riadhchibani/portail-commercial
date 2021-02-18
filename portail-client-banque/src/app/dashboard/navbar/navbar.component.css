@@ -1,0 +1,25 @@
+.styleicon {
+  font-size: 34px;
+  position: relative;
+    left: -26%;
+    top: -9%;
+}
+
+.stylebtn {
+  width: 230%;
+    height: 140%;
+    position: relative;
+    top: -21%;
+    right: 128%;
+}
+.stylabel{
+  font-size: 116%;
+    font-family: Arial, Helvetica, sans-serif;
+    position: relative;
+    right: 10%;
+}
+#stynav{
+  position: fixed;
+  left: 270px;
+  width: 83%;
+}

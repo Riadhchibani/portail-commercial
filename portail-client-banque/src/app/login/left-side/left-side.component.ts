@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-left-side',
@@ -7,13 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeftSideComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
+  hide = true;
 
   list: string[] = [
     "Admin",
-    "utilisateur"
+    "Client"
   ];
+  nav() {
+    this.router.navigate(["dashboard"]);
 
+  }
 }

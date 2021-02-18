@@ -4,14 +4,20 @@
   <div class="heighthead"></div>
   <div class="container">
     <div class="row">
-      <mat-form-field class="example-full-width">
-        <input matInput placeholder="Identifiant">
+      <mat-form-field appearance="outline">
+        <mat-label>Identifiant</mat-label>
+        <input matInput placeholder="Placeholder">
       </mat-form-field>
     </div>
     <div class="heig"></div>
     <div class="row">
-      <mat-form-field class="example-full-width">
-        <input matInput type="password" placeholder="Mot de passe">
+      <mat-form-field appearance="outline">
+        <mat-label>Enter your password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
       </mat-form-field>
     </div>
     <div class="heig"></div>
@@ -26,7 +32,7 @@
     <div class="heig"></div>
     <div class="row">
       <div class="col-sm offset-2">
-        <button mat-raised-button color="primary">Connexion</button>
+        <button mat-raised-button (click)='nav()' color="primary">Connexion</button>
       </div>
       <div class="col-sm">
         <button mat-stroked-button color="primary">Annuler</button>
@@ -35,8 +41,31 @@
     <div class="heig"></div>
     <div class="row">
       <div class="col-12 offset-2">
-        <a href="#">Si vous avez oublié le mot de passe ou l'identifiant</a>
+        <a class="stya" href="#">Si vous avez oublié le mot de passe ou l'identifiant</a>
       </div>
     </div>
   </div>
 </div>
+
+
+
+
+
+<!--
+
+  <mat-form-field appearance="outline">
+        <mat-label>Enter your password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+
+<mat-form-field appearance="outline">
+        <mat-label>Identifiant</mat-label>
+        <input matInput placeholder="Placeholder">
+      </mat-form-field>
+
+
+
+-->
