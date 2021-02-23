@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+import java.util.stream.Collector;
 
 @Service
 public class UtilisateurService {
@@ -36,6 +37,15 @@ public class UtilisateurService {
 
     public void save(Utilisateur utilisateur) {
         utilisateurRepository.save(utilisateur);
+    }
+
+    public Utilisateur findbyNamepwd(String username, String password) {
+        List<Utilisateur> listOfUser = getAllUsers();
+        Utilisateur user = listOfUser.stream()
+                .filter(userName -> userName.getUsername().equals(username))
+                .findAny()
+                .get();
+        return user;
     }
 
 

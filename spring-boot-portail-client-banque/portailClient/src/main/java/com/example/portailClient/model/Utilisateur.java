@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
-@Entity( name= "Utilisateur")
+@Entity(name = "Utilisateur")
 @Table(
         name = "utilisateur",
         uniqueConstraints = {
@@ -62,6 +62,17 @@ public class Utilisateur {
             name = "tel"
     )
     private int tel;
+    @Column(
+            name = "password",
+            nullable = false
+    )
+    private String password;
+
+    @Column(
+            name = "username",
+            nullable = false
+    )
+    private String username;
 
     public Utilisateur(
             int id,
@@ -70,20 +81,32 @@ public class Utilisateur {
             String email,
             int age,
             String date,
-            int tel
-    ){
-        this.id=id;
-        this.nom=nom;
-        this.prenom=prenom;
-        this.email=email;
-        this.age=age;
-        this.date=date;
-        this.tel=tel;
+            int tel,
+            String username,
+            String password
+    ) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.age = age;
+        this.date = date;
+        this.tel = tel;
+        this.username = username;
+        this.password = password;
     }
 
 
     public Utilisateur() {
 
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getId() {
@@ -142,5 +165,11 @@ public class Utilisateur {
         this.tel = tel;
     }
 
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }

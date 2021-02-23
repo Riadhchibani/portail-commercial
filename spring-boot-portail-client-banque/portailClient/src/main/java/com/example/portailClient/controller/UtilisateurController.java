@@ -15,7 +15,7 @@ public class UtilisateurController {
     @Autowired
     private UtilisateurService utilisateurService;
 
-    @GetMapping("/all")
+    @GetMapping("/allUsers")
     public List<Utilisateur> getAllUsers() {
         return utilisateurService.getAllUsers();
     }
@@ -30,5 +30,9 @@ public class UtilisateurController {
         utilisateurService.save(utilisateur);
     }
 
+    @GetMapping("/{username}/{password}")
+    public Utilisateur getbyusernamepwd(@PathVariable("username") String username ,@PathVariable("password") String password){
+        return utilisateurService.findbyNamepwd(username, password);
+    }
 
 }
