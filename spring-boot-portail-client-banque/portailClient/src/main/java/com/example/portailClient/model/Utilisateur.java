@@ -74,6 +74,13 @@ public class Utilisateur {
     )
     private String username;
 
+    @OneToOne
+    @Column(
+            name = "role",
+            nullable = false
+    )
+    private String role;
+
     public Utilisateur(
             int id,
             String nom,
@@ -83,7 +90,8 @@ public class Utilisateur {
             String date,
             int tel,
             String username,
-            String password
+            String password,
+            String role
     ) {
         this.id = id;
         this.nom = nom;
@@ -94,6 +102,7 @@ public class Utilisateur {
         this.tel = tel;
         this.username = username;
         this.password = password;
+        this.role = role;
     }
 
 
@@ -171,5 +180,13 @@ public class Utilisateur {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

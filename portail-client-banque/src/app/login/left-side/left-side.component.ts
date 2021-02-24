@@ -13,10 +13,6 @@ export class LeftSideComponent implements OnInit {
   ngOnInit(): void { }
   hide = true;
 
-  list: string[] = [
-    "Admin",
-    "Client"
-  ];
   nav() {
     this.router.navigate(["dashboard"]);
 

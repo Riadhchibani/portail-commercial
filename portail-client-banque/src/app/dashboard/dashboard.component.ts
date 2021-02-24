@@ -9,7 +9,12 @@ export class DashboardComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  public itemTemp: string = 'itemOfClient';
+
+  addItem(newItem: string) {
+    this.itemTemp = newItem.toString();
   }
+
+  ngOnInit(): void { }
 
 }

@@ -1,2 +1,5 @@
 <app-navbar></app-navbar>
-<app-sidebar></app-sidebar>
+<app-sidebar (newItemEvent)="addItem($event)"></app-sidebar>
+<div class="posBody">
+  <app-body typeOfOutput="{{itemTemp}}"></app-body>
+</div>

@@ -21,6 +21,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BodyComponent } from './dashboard/body/body.component';
 import { ChartsModule } from 'ng2-charts';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatSidenavModule,
     MatToolbarModule,
     ChartsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]
