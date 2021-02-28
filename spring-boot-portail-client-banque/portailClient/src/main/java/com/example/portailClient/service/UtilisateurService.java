@@ -42,7 +42,7 @@ public class UtilisateurService {
     public Utilisateur findbyNamepwd(String username, String password) {
         List<Utilisateur> listOfUser = getAllUsers();
         Utilisateur user = listOfUser.stream()
-                .filter(userName -> userName.getUsername().equals(username))
+                .filter(userName -> userName.getUsername().equals(username) && userName.getPassword().equals(password))
                 .findAny()
                 .get();
         return user;

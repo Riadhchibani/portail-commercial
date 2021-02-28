@@ -8,12 +8,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
-
+@CrossOrigin(origins = "*")
 @RestController
 public class UtilisateurController {
 
     @Autowired
     private UtilisateurService utilisateurService;
+
+    @GetMapping("/log")
+    public String login(){
+        return "login successfully";
+    }
 
     @GetMapping("/allUsers")
     public List<Utilisateur> getAllUsers() {

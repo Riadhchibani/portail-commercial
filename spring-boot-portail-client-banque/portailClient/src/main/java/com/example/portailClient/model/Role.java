@@ -18,12 +18,7 @@ public class Role {
             name = "role"
     )
     private String role;
-    @OneToOne(mappedBy = "utilisateur")
-    @Column(
-            name = "user",
-            nullable = false
-    )
-    private Utilisateur utilisateur;
+
 
     public Role(String id_role, String role) {
         this.id_role = id_role;

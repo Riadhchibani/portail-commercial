@@ -74,7 +74,7 @@ public class Utilisateur {
     )
     private String username;
 
-    @OneToOne
+
     @Column(
             name = "role",
             nullable = false
