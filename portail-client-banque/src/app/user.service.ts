@@ -15,16 +15,15 @@ export class UserService {
   constructor(private http: HttpClient) {
     this.usersUrl = environment.apibaseUrl;
   }
-  public login(username: String, password: String) {
+  public getUser(username: String, password: String) {
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ":" + password) })
-    return this.http.get("http://localhost:8080/log", { headers, responseType: 'text' as 'json' })
+    return this.http.get("http://localhost:8080/user1/123", { headers, responseType: 'text' as 'json' })
   }
 
-  public getUser() {
-    let username = "user1";
-    let password = "123";
+  public login(username: String, password: String) {
+   
     const headers = new HttpHeaders({ Authorization: 'Basic ' + btoa(username + ":" + password) })
-    return this.http.get("http://localhost:8080/getUsers", { headers})
+    return this.http.get("http://localhost:8080/log", { headers})
   }
 
   public findAll(): Observable<Utilisateur[]> {

@@ -1,5 +1,5 @@
 package com.example.portailClient.security;
-
+/*
 import com.example.portailClient.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -29,7 +29,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .withUser("user1").password(getPasswordEncoder().encode("123"))
                 .roles("ADMIN");*/
 
-    }
+   /* }
 
     @Bean
     public PasswordEncoder getPasswordEncoder() {
@@ -49,10 +49,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .httpBasic();
 
-         */
+
         http.authorizeRequests().antMatchers("/**").fullyAuthenticated().and().httpBasic();
 
 
     }
 
 }
+  */

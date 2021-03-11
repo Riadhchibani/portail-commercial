@@ -23,12 +23,13 @@ export class LeftSideComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userService.login(this.username, this.password)
+    this.userService.findbyNamepwd(this.username, this.password)
       .subscribe(data => {
         this.router.navigate(["dashboard"]);
       },
         (error: HttpErrorResponse) => {
-          alert(error.message);
+          window.location.reload();
+          //alert(error.message);
         }
       )
   }

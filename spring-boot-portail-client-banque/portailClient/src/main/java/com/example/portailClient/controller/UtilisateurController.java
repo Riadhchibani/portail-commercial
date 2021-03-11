@@ -15,9 +15,9 @@ public class UtilisateurController {
     @Autowired
     private UtilisateurService utilisateurService;
 
-    @GetMapping("/log")
-    public String login(){
-        return "login successfully";
+    @GetMapping("/log/{username}/{password}")
+    public Utilisateur login(@PathVariable("username") String username ,@PathVariable("password") String password){
+        return this.utilisateurService.findbyNamepwd(username,password);
     }
 
     @GetMapping("/allUsers")

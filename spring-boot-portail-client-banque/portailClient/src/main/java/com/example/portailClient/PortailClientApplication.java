@@ -18,7 +18,7 @@ import java.util.Arrays;
 
 
 @SpringBootApplication
-@EnableJpaRepositories(basePackageClasses = UtilisateurRepository.class)
+//@EnableJpaRepositories(basePackageClasses = UtilisateurRepository.class)
 public class PortailClientApplication {
 
     public static void main(String[] args) {

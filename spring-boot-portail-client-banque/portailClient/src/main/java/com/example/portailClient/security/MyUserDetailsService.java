@@ -1,5 +1,5 @@
 package com.example.portailClient.security;
-
+/*
 import com.example.portailClient.model.Utilisateur;
 import com.example.portailClient.repository.UtilisateurRepository;
 import com.example.portailClient.service.MyUserDetails;
@@ -22,4 +22,4 @@ public class MyUserDetailsService implements UserDetailsService {
         return user.map(MyUserDetails::new).get();
 
     }
-}
+}*/
