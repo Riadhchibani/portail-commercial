@@ -6,15 +6,15 @@
     <div class="container">
       <div class="row">
         <mat-form-field appearance="outline">
-          <mat-label>Identifiant</mat-label>
+          <mat-label>Login</mat-label>
           <input matInput placeholder="Placeholder" [(ngModel)]="username" name="username">
         </mat-form-field>
       </div>
       <div class="heig"></div>
       <div class="row">
         <mat-form-field appearance="outline">
-          <mat-label>Enter your password</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="password" name="password" (keyup.enter)="ontapusername()">
+          <mat-label>Mot de passe</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" [(ngModel)]="password" name="password">
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
             [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -28,12 +28,6 @@
         </div>
         <div class="col-sm">
           <button mat-stroked-button color="primary">Annuler</button>
-        </div>
-      </div>
-      <div class="heig"></div>
-      <div class="row">
-        <div class="col-12 offset-2">
-          <a class="stya" href="#">Si vous avez oublié le mot de passe ou l'identifiant</a>
         </div>
       </div>
     </div>

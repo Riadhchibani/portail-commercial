@@ -1,18 +1,18 @@
-<nav class="navbar navbar-light bg-light justify-content-between" id="stynav">
-  <a class="navbar-brand"></a>
-  <form class="form-inline">
-    <div class="row">
-      <div class="col-sm-4">
-        <button mat-button class="stylebtn">
-          <mat-icon class="styleicon">account_circle</mat-icon>
-          <label class="stylabel">Admin</label>
-        </button>
-      </div>
-      <div class="col-sm-8">
-        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" class="stybtn">
-          <mat-icon>settings</mat-icon>
-        </button>
-      </div>
-    </div>
-  </form>
-</nav>
+<mat-toolbar>
+  <span class="example-spacer"></span>
+    <mat-icon >account_circle</mat-icon>
+    <label class="stylabel">{{this.usernameOutput}}</label>
+  <button mat-button [matMenuTriggerFor]="menu">
+    <mat-icon>settings</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="take('Option1')">
+      <mat-icon>info</mat-icon>info
+    </button>
+    <button mat-menu-item (click)="take('${dconnect}')">
+      <mat-icon>logout</mat-icon>
+      déconnexion
+    </button>
+  </mat-menu>
+
+</mat-toolbar>

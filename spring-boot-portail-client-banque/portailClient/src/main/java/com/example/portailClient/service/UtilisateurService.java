@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collector;
@@ -17,11 +18,15 @@ import java.util.stream.Collector;
 public class UtilisateurService {
 
 
-    private final UtilisateurRepository utilisateurRepository;
+    private UtilisateurRepository utilisateurRepository;
 
     @Autowired
     public UtilisateurService(UtilisateurRepository utilisateurRepository) {
         this.utilisateurRepository = utilisateurRepository;
+
+    }
+
+    public UtilisateurService() {
 
     }
 
@@ -31,13 +36,11 @@ public class UtilisateurService {
         return users;
     }
 
-    public Utilisateur getUser(int id) {
-        return utilisateurRepository.findById(id).get();
-    }
 
     public void save(Utilisateur utilisateur) {
         utilisateurRepository.save(utilisateur);
     }
+
 
     public Utilisateur findbyNamepwd(String username, String password) {
         List<Utilisateur> listOfUser = getAllUsers();
@@ -48,5 +51,36 @@ public class UtilisateurService {
         return user;
     }
 
+    public void dropUserById(Long id) {
+        this.utilisateurRepository.deleteById(id);
+    }
+
+    public Utilisateur getUserByUsername(String username) {
+        List<Utilisateur> listOfUser = getAllUsers();
+        Utilisateur user = listOfUser.stream()
+                .filter(userName -> userName.getUsername().equals(username))
+                .findAny()
+                .get();
+        return user;
+    }
+
+    public Utilisateur updateUser(Utilisateur utilisateur) {
+        return this.utilisateurRepository.save(utilisateur);
+    }
+
+    public Utilisateur getUserById(Long id) {
+        List<Utilisateur> listOfUser = getAllUsers();
+        Utilisateur user = listOfUser.stream()
+                .filter(userName -> userName.getId().equals(id))
+                .findAny()
+                .get();
+        return user;
+    }
+
+    public Utilisateur updateState(Long id, boolean stateUser) {
+        Utilisateur user = this.utilisateurRepository.getOne(id);
+        user.setEtat(stateUser);
+        return this.utilisateurRepository.save(user);
+    }
 
 }

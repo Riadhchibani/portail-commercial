@@ -1,0 +1,18 @@
+<mat-toolbar>
+    <span class="example-spacer"></span>
+      <mat-icon >account_circle</mat-icon>
+      <label class="stylabel">{{this.user}}</label>
+    <button mat-button [matMenuTriggerFor]="menu">
+      <mat-icon>settings</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="take('Option1')">
+        <mat-icon>info</mat-icon>info
+      </button>
+      <button mat-menu-item (click)="take('${dconnect}')">
+        <mat-icon>logout</mat-icon>
+        déconnexion
+      </button>
+    </mat-menu>
+  
+  </mat-toolbar>

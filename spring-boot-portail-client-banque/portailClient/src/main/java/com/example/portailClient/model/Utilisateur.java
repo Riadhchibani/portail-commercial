@@ -2,7 +2,10 @@ package com.example.portailClient.model;
 
 import javax.persistence.*;
 
-import static javax.persistence.GenerationType.SEQUENCE;
+import java.util.List;
+import java.util.UUID;
+
+import static javax.persistence.GenerationType.*;
 
 @Entity(name = "Utilisateur")
 @Table(
@@ -30,7 +33,7 @@ public class Utilisateur {
             name = "id",
             updatable = false
     )
-    private int id;
+    private Long id;
     @Column(
             name = "nom",
             nullable = false,
@@ -48,16 +51,16 @@ public class Utilisateur {
             columnDefinition = "TEXT"
     )
     private String email;
+
     @Column(
-            name = "age",
-            nullable = false
-    )
-    private int age;
-    @Column(
-            name = "date",
+            name = "date_de_naissance",
             columnDefinition = "TEXT"
     )
-    private String date;
+    private String date_de_naissance;
+    @Column(
+            name = "age"
+    )
+    private int age;
     @Column(
             name = "tel"
     )
@@ -74,35 +77,38 @@ public class Utilisateur {
     )
     private String username;
 
-
     @Column(
             name = "role",
             nullable = false
     )
     private String role;
 
+    @Column(
+            name = "etat",
+            nullable = false
+    )
+    private boolean etat;
+
     public Utilisateur(
-            int id,
             String nom,
             String prenom,
             String email,
-            int age,
-            String date,
+            String date_de_naissance,
             int tel,
             String username,
             String password,
-            String role
+            String role,
+            boolean etat
     ) {
-        this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
-        this.age = age;
-        this.date = date;
+        this.date_de_naissance = date_de_naissance;
         this.tel = tel;
         this.username = username;
         this.password = password;
         this.role = role;
+        this.etat=etat;
     }
 
 
@@ -118,11 +124,11 @@ public class Utilisateur {
         this.username = username;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -159,11 +165,11 @@ public class Utilisateur {
     }
 
     public String getDate() {
-        return date;
+        return date_de_naissance;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDate(String date_de_naissance) {
+        this.date_de_naissance = date_de_naissance;
     }
 
     public int getTel() {
@@ -188,5 +194,21 @@ public class Utilisateur {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getDate_de_naissance() {
+        return date_de_naissance;
+    }
+
+    public void setDate_de_naissance(String date_de_naissance) {
+        this.date_de_naissance = date_de_naissance;
+    }
+
+    public boolean isEtat() {
+        return etat;
+    }
+
+    public void setEtat(boolean etat) {
+        this.etat = etat;
     }
 }

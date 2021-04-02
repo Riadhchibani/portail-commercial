@@ -1,18 +1,56 @@
 <div class="sidebar">
-  <div class="logo"></div>
+  <div class="title">
+    <mat-icon class="posIcon">view_list</mat-icon>
+    tableau de bord
+  </div>
   <mat-nav-list>
-    <mat-list-item class="rowList" (click)="addNewItem(itemOfClient)">
+    <mat-list-item class="rowList" (click)="addNewItem(itemOfClient)" (click)="clientState = !clientState">
       <mat-icon id="micon" mat-list-icon>assignment_ind</mat-icon>
       <h4 mat-line>Clients</h4>
+      <mat-icon id="miconadd" mat-list-icon>add</mat-icon>
     </mat-list-item>
-    <mat-list-item (click)="addNewItem(itemOfAddClient)">
+    <mat-list-item class="space" (click)="addNewItem(itemOfAddClient)" *ngIf="clientState">
       <mat-icon id="micon" mat-list-icon>supervised_user_circle</mat-icon>
       <h4 mat-line>Ajouter Client</h4>
+    </mat-list-item>
+    <mat-list-item (click)="addNewItem(itemOfProduction)" (click)="pubState = !pubState">
+      <mat-icon id="micon" mat-list-icon>public</mat-icon>
+      <h4 mat-line>publications</h4>
+      <mat-icon id="miconadd" mat-list-icon>add</mat-icon>
+    </mat-list-item>
+    <mat-list-item class="space" (click)="addNewItem(itemOfAddProduction)" *ngIf="pubState">
+      <mat-icon id="micon" mat-list-icon>add_shopping_cart</mat-icon>
+      <h4 mat-line>Ajouter publication</h4>
+    </mat-list-item>
+    <mat-list-item (click)="addNewItem(itemOfDemand)">
+      <mat-icon id="micon" mat-list-icon>note</mat-icon>
+      <h4 mat-line>Les demandes</h4>
+    </mat-list-item>
+    <mat-list-item (click)="addNewItem(itemOfBill)" (click)="billState = !billState">
+      <mat-icon id="micon" mat-list-icon>note</mat-icon>
+      <h4 mat-line>Factures</h4>
+      <mat-icon id="miconadd" mat-list-icon>add</mat-icon>
+    </mat-list-item>
+    <mat-list-item class="space" (click)="addNewItem(itemOfAddBill)" *ngIf="billState">
+      <mat-icon id="micon" mat-list-icon>note_add</mat-icon>
+      <h4 mat-line>Ajouter Facture</h4>
+    </mat-list-item>
+    <mat-list-item (click)="addNewItem(itemOfProduct)" (click)="productState = !productState">
+      <mat-icon id="micon" mat-list-icon>shopping_cart</mat-icon>
+      <h4 mat-line>Produits</h4>
+      <mat-icon id="miconadd" mat-list-icon>add</mat-icon>
+    </mat-list-item>
+    <mat-list-item class="space" (click)="addNewItem(itemOfAddProduct)" *ngIf="productState">
+      <mat-icon id="micon" mat-list-icon>note_add</mat-icon>
+      <h4 mat-line>Ajouter Produits</h4>
     </mat-list-item>
     <mat-list-item (click)="addNewItem(itemOfCharts)">
       <mat-icon id="micon" mat-list-icon>bar_chart</mat-icon>
       <h4 mat-line>Statistique</h4>
     </mat-list-item>
+    <mat-list-item (click)="addNewItem(itemOfReclamation)">
+      <mat-icon id="micon" mat-list-icon>new_releases</mat-icon>
+      <h4 mat-line>réclamation</h4>
+    </mat-list-item>
   </mat-nav-list>
 </div>
-

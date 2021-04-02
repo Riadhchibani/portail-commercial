@@ -26,6 +26,29 @@ import { ChartsModule } from 'ng2-charts';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ClientDashboardComponent } from './client-dashboard/client-dashboard.component';
+import { NavbarClientComponent } from './client-dashboard/navbar-client/navbar-client.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AddUserComponent } from './dashboard/body/add-user/add-user.component';
+import { PublicationComponent } from './dashboard/body/publication/publication.component';
+import { AddPublicationComponent } from './dashboard/body/add-publication/add-publication.component';
+import { BillComponent } from './dashboard/body/bill/bill.component';
+import { AddBillComponent } from './dashboard/body/add-bill/add-bill.component';
+import { ReclamationComponent } from './dashboard/body/reclamation/reclamation.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { SidebarClientComponent } from './client-dashboard/sidebar-client/sidebar-client.component';
+import { BodyClientComponent } from './client-dashboard/body-client/body-client.component';
+import { ProduitComponent } from './dashboard/body/produit/produit.component';
+import { AddProduitComponent } from './dashboard/body/add-produit/add-produit.component';
+import { EditUserComponent } from './dashboard/edit-user/edit-user.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { PasswordDialogComponent } from './dashboard/edit-user/password-dialog/password-dialog.component';
+import { DemandComponent } from './dashboard/demand/demand.component';
+import { AddDemandComponent } from './client-dashboard/body-client/add-demand/add-demand.component';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +59,25 @@ import { MatNativeDateModule } from '@angular/material/core';
     DashboardComponent,
     NavbarComponent,
     SidebarComponent,
-    BodyComponent
+    BodyComponent,
+    ClientDashboardComponent,
+    NavbarClientComponent,
+    AddUserComponent,
+    PublicationComponent,
+    AddPublicationComponent,
+    BillComponent,
+    AddBillComponent,
+    ReclamationComponent,
+    SidebarClientComponent,
+    BodyClientComponent,
+    ProduitComponent,
+    AddProduitComponent,
+    EditUserComponent,
+    NotFoundComponent,
+    PasswordDialogComponent,
+    DemandComponent,
+    AddDemandComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -55,7 +96,12 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatDatepickerModule,
     MatNativeDateModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatTableModule,
+    MatSlideToggleModule,
+    ReactiveFormsModule,
+    MatMenuModule,
+    MatDialogModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

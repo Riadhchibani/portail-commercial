@@ -1,0 +1,15 @@
+.stylabel {
+    font-size: 116%;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  
+  mat-toolbar {
+    width: 1035px;
+    position: absolute;
+    left: 269px;
+  }
+  

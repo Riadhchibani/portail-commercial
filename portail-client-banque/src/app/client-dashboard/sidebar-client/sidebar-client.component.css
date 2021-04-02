@@ -1,0 +1,95 @@
+.sidebar {
+    min-width: 270px;
+    max-width: 270px;
+    background: #3445b4;
+    color: #fff;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+    position: fixed;
+    height: 100%;
+  }
+  
+  .sidebar .custom-menu {
+    display: inline-block;
+    position: absolute;
+    top: 20px;
+    right: 0;
+    margin-right: -20px;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+  }
+  
+  .sidebar .custom-menu .btn.btn-primary {
+    background: transparent;
+    border-color: transparent;
+  }
+  
+  .sidebar .custom-menu .btn i {
+    margin-right: -40px;
+    font-size: 14px;
+  }
+  
+  .sidebar h1 {
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 30px;
+  }
+  
+  .sidebar ul.components {
+    padding: 0;
+  }
+  
+  .sidebar ul li {
+    font-size: 16px;
+  }
+  
+  .sidebar ul.components {
+    padding: 0;
+  }
+  
+  #btnb {
+    position: relative;
+    width: 100%;
+  }
+  
+  p {
+    color: white;
+  }
+  
+  h4 {
+    color: rgb(247, 247, 248);
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  #micon {
+    color: rgb(194, 191, 245);
+  }
+  
+  #miconadd {
+    color: rgb(194, 191, 245);
+    left: 16%;
+    position: fixed;
+  }
+  
+  .title {
+    width: 100%;
+    height: 15%;
+    font-size: large;
+    padding-left: 20%;
+    padding-top: 13%;
+  }
+  
+  .posIcon {
+    position: absolute;
+    left: 10%;
+    top: 33px;
+  }
+  
+  mat-list-item.space {
+    position: relative;
+    left: 20px;
+    width: 93%;
+  }
+  

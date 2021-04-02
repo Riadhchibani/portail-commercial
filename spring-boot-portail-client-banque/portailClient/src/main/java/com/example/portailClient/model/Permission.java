@@ -14,13 +14,13 @@ public class Permission {
             name = "id_permission",
             nullable = false
     )
-    private String id_permission;
+    private Long id_permission;
     @Column(
             name = "permission"
     )
     private String permission;
 
-    public Permission(String id_permission, String permission) {
+    public Permission(Long id_permission, String permission) {
         this.id_permission = id_permission;
         this.permission = permission;
     }
@@ -29,11 +29,11 @@ public class Permission {
 
     }
 
-    public String getId_permission() {
+    public Long getId_permission() {
         return id_permission;
     }
 
-    public void setId_permission(String id_permission) {
+    public void setId_permission(Long id_permission) {
         this.id_permission = id_permission;
     }
 

@@ -2,6 +2,7 @@ package com.example.portailClient.model;
 
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity (name = "role")
 @Table(
@@ -13,14 +14,20 @@ public class Role {
             name = "id_role",
             nullable = false
     )
-    private String id_role;
+    private Long id_role;
     @Column(
             name = "role"
     )
     private String role;
+    /*@ManyToOne
+    @JoinColumn(
+            name = "utilisateur"
+    )
+    private List<Utilisateur> utilisateur;
+*/
 
 
-    public Role(String id_role, String role) {
+    public Role(Long id_role, String role) {
         this.id_role = id_role;
         this.role = role;
     }
@@ -28,11 +35,11 @@ public class Role {
 
     }
 
-    public String getId_role() {
+    public Long getId_role() {
         return id_role;
     }
 
-    public void setId_role(String id_role) {
+    public void setId_role(Long id_role) {
         this.id_role = id_role;
     }
 

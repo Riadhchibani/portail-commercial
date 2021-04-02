@@ -67,7 +67,28 @@ h4 {
   color: rgb(194, 191, 245);
 }
 
-.logo {
+#miconadd {
+  color: rgb(194, 191, 245);
+  left: 16%;
+  position: fixed;
+}
+
+.title {
   width: 100%;
   height: 15%;
+  font-size: large;
+  padding-left: 20%;
+  padding-top: 13%;
+}
+
+.posIcon {
+  position: absolute;
+  left: 10%;
+  top: 33px;
+}
+
+mat-list-item.space {
+  position: relative;
+  left: 20px;
+  width: 93%;
 }

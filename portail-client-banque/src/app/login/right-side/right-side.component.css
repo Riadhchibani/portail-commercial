@@ -4,6 +4,6 @@ div.body {
   background-size: cover;
   width: 100%;
   height: 100%;
-  -webkit-filter: opacity(.1) drop-shadow(0 0 0 rgb(0, 47, 255));
-  filter: opacity(.6) drop-shadow(0 0 0 rgb(0, 47, 255)) blur(1px) contrast(100%); 
+  /*-webkit-filter: opacity(.1) drop-shadow(0 0 0 rgb(0, 47, 255));
+  filter: opacity(.6) drop-shadow(0 0 0 rgb(0, 47, 255)) blur(1px) contrast(100%); */
 }

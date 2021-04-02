@@ -1,25 +1,14 @@
-.styleicon {
-  font-size: 34px;
-  position: relative;
-    left: -26%;
-    top: -9%;
+.stylabel {
+  font-size: 116%;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.stylebtn {
-  width: 230%;
-    height: 140%;
-    position: relative;
-    top: -21%;
-    right: 128%;
+.example-spacer {
+  flex: 1 1 auto;
 }
-.stylabel{
-  font-size: 116%;
-    font-family: Arial, Helvetica, sans-serif;
-    position: relative;
-    right: 10%;
-}
-#stynav{
-  position: fixed;
-  left: 270px;
-  width: 83%;
+
+mat-toolbar {
+  width: 1035px;
+  position: absolute;
+  left: 269px;
 }

@@ -14,7 +14,7 @@ export class LeftSideComponent implements OnInit {
   public users: Utilisateur | undefined;
   public username: String = '';
   public password: String = '';
-  private test: any;
+  public hide = true;
 
   constructor(private router: Router, private userService: UserService) { }
 
@@ -25,7 +25,14 @@ export class LeftSideComponent implements OnInit {
   onSubmit() {
     this.userService.findbyNamepwd(this.username, this.password)
       .subscribe(data => {
-        this.router.navigate(["dashboard"]);
+        console.log(data.role+ " " + data.etat);
+        if (data.role == "User" && data.etat == true) {
+          this.router.navigate(['client/dashboard', data.username]);
+        } else if (data.role == "Admin") {
+          this.router.navigate(['dashboard', data.username]);
+        } else {
+          this.router.navigate(['NotFoundError']);
+        }
       },
         (error: HttpErrorResponse) => {
           window.location.reload();
@@ -33,15 +40,5 @@ export class LeftSideComponent implements OnInit {
         }
       )
   }
-  ontapusername() {
-    console.log(this.password);
-  }
-  ontappwd(value: any) {
-    this.password = value;
-    console.log(value);
-  }
 
-  hide = true;
-
- 
 }

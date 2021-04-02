@@ -3,11 +3,15 @@ package com.example.portailClient.controller;
 import com.example.portailClient.model.Utilisateur;
 import com.example.portailClient.service.UtilisateurService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+
 @CrossOrigin(origins = "*")
 @RestController
 public class UtilisateurController {
@@ -15,9 +19,9 @@ public class UtilisateurController {
     @Autowired
     private UtilisateurService utilisateurService;
 
-    @GetMapping("/log/{username}/{password}")
-    public Utilisateur login(@PathVariable("username") String username ,@PathVariable("password") String password){
-        return this.utilisateurService.findbyNamepwd(username,password);
+    @GetMapping("login/{username}/{password}")
+    public Utilisateur login(@PathVariable("username") String username, @PathVariable("password") String password) {
+        return this.utilisateurService.findbyNamepwd(username, password);
     }
 
     @GetMapping("/allUsers")
@@ -25,19 +29,40 @@ public class UtilisateurController {
         return utilisateurService.getAllUsers();
     }
 
-    @GetMapping("/{id}")
-    public Utilisateur getUser(@PathVariable int id) {
-        return utilisateurService.getUser(id);
-    }
 
-    @PostMapping
+    @PostMapping("/saveUser")
     public void saveUser(@RequestBody Utilisateur utilisateur) {
         utilisateurService.save(utilisateur);
     }
 
-    @GetMapping("/{username}/{password}")
-    public Utilisateur getbyusernamepwd(@PathVariable("username") String username ,@PathVariable("password") String password){
-        return utilisateurService.findbyNamepwd(username, password);
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Utilisateur> deleteUser(@PathVariable("id") Long id) {
+        this.utilisateurService.dropUserById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+
     }
+
+    @GetMapping("/getUser/{username}")
+    public Utilisateur getUserByUsername(@PathVariable("username") String username) {
+        return this.utilisateurService.getUserByUsername(username);
+    }
+
+    @PutMapping("/updateUser")
+    public ResponseEntity<Utilisateur> updateUser(@RequestBody Utilisateur utilisateur) {
+        Utilisateur updateUser = this.utilisateurService.updateUser(utilisateur);
+        return new ResponseEntity<>(updateUser, HttpStatus.OK);
+    }
+
+    @PutMapping("/updateStateOfUser/{id}/{stateUser}")
+    public Utilisateur updateUserState(@PathVariable("id") Long id, @PathVariable("stateUser") boolean stateUser) {
+        Utilisateur updateUser = this.utilisateurService.updateState(id, stateUser);
+        return updateUser;
+    }
+
+    @GetMapping("/getUserByID/{id}")
+    public Utilisateur getUserById(@PathVariable("id") Long id) {
+        return this.utilisateurService.getUserById(id);
+    }
+
 
 }

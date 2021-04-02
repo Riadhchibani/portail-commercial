@@ -1,0 +1,93 @@
+<form class="example-form" [formGroup]="profileForm">
+  <div class="container">
+    <div class="row">
+      <h2>Ajouter Client</h2>
+    </div>
+    <div class="row">
+      <div class="col-9">
+        <mat-form-field class="example-full-width">
+          <mat-label>Nom</mat-label>
+          <input matInput placeholder="" value="" formControlName="nom" required>
+        </mat-form-field>
+      </div>
+      <div class="col-3">
+        <mat-form-field class="example-full-width">
+          <mat-label>Prenom</mat-label>
+          <input matInput placeholder="" value="" formControlName="prenom" required>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9">
+        <mat-form-field id="widthIn" class="example-full-width">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput [errorStateMatcher]="matcher" placeholder="Ex. pat@example.com"
+            formControlName="Email" required>
+          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-3">
+        <mat-form-field appearance="fill">
+          <mat-label>Role</mat-label>
+          <select (change)="take($event)" matNativeControl required>
+            <option value="">...</option>
+            <option value="Admin">Admin</option>
+            <option value="User">User</option>
+          </select>
+        </mat-form-field>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9">
+        <mat-form-field class="example-full-width">
+          <mat-label>username</mat-label>
+          <input matInput placeholder="" value="" formControlName="username" required>
+        </mat-form-field>
+      </div>
+      <div class="col-3">
+        <mat-form-field class="example-full-width">
+          <mat-label>Mot de passe</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-9">
+        <mat-form-field class="example-full-width">
+          <mat-label>Tel</mat-label>
+          <input type="tel" matInput placeholder="" value="" formControlName="tel" required>
+        </mat-form-field>
+      </div>
+      <div class="col-3">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>date de naissance</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="date" readonly="readonly" class="form-control"
+            name="picker" required>
+          <mat-datepicker-toggle matSuffix [for]="picker">
+            <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+          </mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-4">
+        <input type="submit" name="add" class="btn btn-primary" (click)="onSubmit()" value="submit">
+      </div>
+      <div class="col-3">
+        <button type="reset" class="btn btn-default">Reset</button>
+      </div>
+    </div>
+  </div>
+</form>
