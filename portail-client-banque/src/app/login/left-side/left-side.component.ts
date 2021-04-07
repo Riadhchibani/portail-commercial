@@ -26,7 +26,7 @@ export class LeftSideComponent implements OnInit {
     this.userService.findbyNamepwd(this.username, this.password)
       .subscribe(data => {
         console.log(data.role+ " " + data.etat);
-        if (data.role == "User" && data.etat == true) {
+        if (data.role == "Client" && data.etat == true) {
           this.router.navigate(['client/dashboard', data.username]);
         } else if (data.role == "Admin") {
           this.router.navigate(['dashboard', data.username]);

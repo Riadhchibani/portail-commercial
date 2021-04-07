@@ -5,6 +5,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { Utilisateur } from 'src/app/model/utilisateur';
 import { UserService } from 'src/app/user.service';
 import { DatePipe } from '@angular/common'
+import { Role } from 'src/app/model/Role';
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -14,7 +15,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   }
 }
 
-interface Role {
+interface Roles {
   value: string;
 }
 
@@ -36,8 +37,8 @@ export class AddUserComponent {
     Validators.email,
   ]);
 
-  roles: Role[] = [
-    { value: 'User' },
+  roles: Roles[] = [
+    { value: 'Client' },
     { value: 'Admin' }
   ];
 
@@ -51,9 +52,9 @@ export class AddUserComponent {
     date: new FormControl(''),
   });
 
-  role: string = '';
+  role = new Role() ;
   take(value: any) {
-    this.role = (value.target.value == 'Admin' || 'User' ? value.target.value : null);
+    this.role = (value.target.value == 'Admin' || 'Client' ? value.target.value : null);
   }
 
   addUser(user: Utilisateur) {

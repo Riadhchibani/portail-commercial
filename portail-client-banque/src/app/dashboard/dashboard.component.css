@@ -1,5 +1,15 @@
-.posBody{
-    position: fixed;
-    top: 13%;
-    left: 30%;
-  }
+app-body{
+  position: absolute;
+  top: 82px;
+  left: 25%;
+  
+}
+
+app-navbar {
+  position: absolute;
+}
+
+app-sidebar {
+  position: absolute;
+
+}

@@ -1,0 +1,10 @@
+table {
+  position: fixed;
+  width: 77%;
+  left: 22%;
+}
+
+div#header {
+  width: 50%;
+  height: 20%;
+}

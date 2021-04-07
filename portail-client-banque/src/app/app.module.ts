@@ -48,6 +48,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { PasswordDialogComponent } from './dashboard/edit-user/password-dialog/password-dialog.component';
 import { DemandComponent } from './dashboard/demand/demand.component';
 import { AddDemandComponent } from './client-dashboard/body-client/add-demand/add-demand.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ClientTableComponent } from './dashboard/body/client-table/client-table.component';
+import { ChartsComponent } from './dashboard/body/charts/charts.component';
+import { MatCardModule } from '@angular/material/card';
 
 
 @NgModule({
@@ -76,8 +80,10 @@ import { AddDemandComponent } from './client-dashboard/body-client/add-demand/ad
     NotFoundComponent,
     PasswordDialogComponent,
     DemandComponent,
-    AddDemandComponent
-    
+    AddDemandComponent,
+    ClientTableComponent,
+    ChartsComponent
+
   ],
   imports: [
     BrowserModule,
@@ -101,7 +107,9 @@ import { AddDemandComponent } from './client-dashboard/body-client/add-demand/ad
     MatSlideToggleModule,
     ReactiveFormsModule,
     MatMenuModule,
-    MatDialogModule
+    MatDialogModule,
+    ScrollingModule,
+    MatCardModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

@@ -1,125 +1,50 @@
-<div *ngIf="itemOfCharts">
+<div *ngIf="items.get('itemOfCharts')">
+  <!--<app-charts></app-charts>-->
   <h2>Statistique</h2>
-  <canvas baseChart style="margin-top: 16%;height: 400px;width: 800px;display: block;" [datasets]="barChartData"
-    [labels]="barChartLabels" [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend"
-    [chartType]="barChartType">
-  </canvas>
+<canvas baseChart style="margin-top: 16%;height: 400px;width: 800px;display: block;" [datasets]="barChartData"
+  [labels]="barChartLabels" [options]="barChartOptions" [plugins]="barChartPlugins" [legend]="barChartLegend"
+  [chartType]="barChartType">
+</canvas>
+
 </div>
 <!------------------------------------------------------------------------------------------------------------------------>
-<div *ngIf="itemOfAddClient">
+<div *ngIf="items.get('itemOfAddClient')">
   <app-add-user></app-add-user>
 </div>
 <!------------------------------------------------------------------------------------------------------------------------>
-<div *ngIf="itemOfClient">
-  <div class="container">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-      <!-- ID Column -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef> ID </th>
-        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-      </ng-container>
-
-      <!-- Name Column -->
-      <ng-container matColumnDef="nom">
-        <th mat-header-cell *matHeaderCellDef> Nom </th>
-        <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
-      </ng-container>
-
-      <!-- pwd Column -->
-      <ng-container matColumnDef="prenom">
-        <th mat-header-cell *matHeaderCellDef> Prenom </th>
-        <td mat-cell *matCellDef="let element"> {{element.prenom}} </td>
-      </ng-container>
-
-      <!-- Age Column -->
-      <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef> Email </th>
-        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="age">
-        <th mat-header-cell *matHeaderCellDef> Age </th>
-        <td mat-cell *matCellDef="let element"> {{element.age}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef> Date </th>
-        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="tel">
-        <th mat-header-cell *matHeaderCellDef> tel </th>
-        <td mat-cell *matCellDef="let element"> {{element.tel}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="username">
-        <th mat-header-cell *matHeaderCellDef> Username </th>
-        <td mat-cell *matCellDef="let element"> {{element.username}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="password">
-        <th mat-header-cell *matHeaderCellDef> Mot de passe </th>
-        <td mat-cell *matCellDef="let element"> ******** </td>
-      </ng-container>
-
-      <ng-container matColumnDef="role">
-        <th mat-header-cell *matHeaderCellDef> Role </th>
-        <td mat-cell *matCellDef="let element"> {{element.role}} </td>
-      </ng-container>
-      <ng-container matColumnDef="etat">
-        <th mat-header-cell *matHeaderCellDef> Etat </th>
-        <td mat-cell *matCellDef="let element">
-          <mat-slide-toggle color="primary" [disabled]="element.role == 'Admin'? true:false" checked="{{element.etat}}" (change)="mychange($event,element.id)"></mat-slide-toggle>
-        </td>
-      </ng-container>
-      <!-- Edit Column -->
-      <ng-container matColumnDef="edit">
-        <th mat-header-cell *matHeaderCellDef> Modifier / Supprimer</th>
-        <td mat-cell *matCellDef="let element">
-          <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" [disabled]="element.role == 'Admin'? true:false" routerLink="/editUser/user/{{element.id}}/admin/{{usernameAdmin}}">
-            <mat-icon style="color: rgb(45, 52, 255);">edit</mat-icon>
-          </button>
-          <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="deleteUser(element.id)" color="warn" [disabled]="element.role == 'Admin'? true:false">
-            <mat-icon style="color: rgb(45, 52, 255);" >delete</mat-icon>
-          </button>
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-    </table>
-  </div>
+<div *ngIf="items.get('itemOfClient')">
+  <app-client-table usernameAdminTable="{{usernameAdmin}}"></app-client-table>
 </div>
 <!------------------------------------------------------------------------------------------------------------------------>
-<div *ngIf="itemOfProduction">
+<div *ngIf="items.get('itemOfProduction')">
   <app-publication></app-publication>
 </div>
 <!------------------------------------------------------------------------------------------------------------------------>
-<div *ngIf="itemOfAddProduction">
+<div *ngIf="items.get('itemOfAddProduction')">
   <app-add-publication></app-add-publication>
 </div>
 <!------------------------------------------------------------------------------------------------------------------------>
-<div *ngIf="itemOfBill">
+<div *ngIf="items.get('itemOfBill')">
   <app-bill></app-bill>
 </div>
 <!------------------------------------------------------------------------------------------------------------------------>
-<div *ngIf="itemOfAddBill">
+<div *ngIf="items.get('itemOfAddBill')">
   <app-add-bill></app-add-bill>
 </div>
 <!------------------------------------------------------------------------------------------------------------------------>
-<div *ngIf="itemOfReclamation">
+<div *ngIf="items.get('itemOfReclamation')">
   <app-reclamation></app-reclamation>
 </div>
 <!------------------------------------------------------------------------------------------------------------------------>
-<div *ngIf="itemOfProduct">
+<div *ngIf="items.get('itemOfProduct')">
   <app-produit></app-produit>
 </div>
 <!------------------------------------------------------------------------------------------------------------------------>
-<div *ngIf="itemOfAddProduct">
+<div *ngIf="items.get('itemOfAddProduct')">
   <app-add-produit></app-add-produit>
 </div>
-<div *ngIf="itemOfDemand">
+<!------------------------------------------------------------------------------------------------------------------------>
+<div *ngIf="items.get('itemOfDemand')">
   <app-demand></app-demand>
 </div>
 

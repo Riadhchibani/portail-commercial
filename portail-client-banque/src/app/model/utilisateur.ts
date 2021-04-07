@@ -1,3 +1,4 @@
+import { Role } from './Role';
 
 export class Utilisateur {
     constructor(
@@ -10,7 +11,7 @@ export class Utilisateur {
         public tel?: number,
         public username?: String,
         public password?: String,
-        public role?: String,
+        public role?: Role,
         public etat?: boolean
     ) { }
 

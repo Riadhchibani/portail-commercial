@@ -2,8 +2,7 @@ package com.example.portailClient.model;
 
 import javax.persistence.*;
 
-import java.util.List;
-import java.util.UUID;
+import java.util.Date;
 
 import static javax.persistence.GenerationType.*;
 
@@ -36,8 +35,7 @@ public class Utilisateur {
     private Long id;
     @Column(
             name = "nom",
-            nullable = false,
-            columnDefinition = "TEXT"
+            nullable = false
     )
     private String nom;
     @Column(
@@ -47,16 +45,14 @@ public class Utilisateur {
     private String prenom;
     @Column(
             name = "email",
-            nullable = false,
-            columnDefinition = "TEXT"
+            nullable = false
     )
     private String email;
 
     @Column(
-            name = "date_de_naissance",
-            columnDefinition = "TEXT"
+            name = "date_de_naissance"
     )
-    private String date_de_naissance;
+    private Date date_de_naissance;
     @Column(
             name = "age"
     )
@@ -73,15 +69,10 @@ public class Utilisateur {
 
     @Column(
             name = "username",
-            nullable = false
+            nullable = false,
+            unique = true
     )
     private String username;
-
-    @Column(
-            name = "role",
-            nullable = false
-    )
-    private String role;
 
     @Column(
             name = "etat",
@@ -89,15 +80,29 @@ public class Utilisateur {
     )
     private boolean etat;
 
+    @ManyToOne
+    private Role role;
+
+    /*@OneToMany
+    private Publication publication;
+
+    @OneToOne
+    private Produit produit;
+
+    @OneToMany
+    private DemandeProduct demandeProduct;
+*/
+
+    //private Reclamation reclamation;
+
     public Utilisateur(
             String nom,
             String prenom,
             String email,
-            String date_de_naissance,
+            Date date_de_naissance,
             int tel,
             String username,
             String password,
-            String role,
             boolean etat
     ) {
         this.nom = nom;
@@ -107,7 +112,6 @@ public class Utilisateur {
         this.tel = tel;
         this.username = username;
         this.password = password;
-        this.role = role;
         this.etat=etat;
     }
 
@@ -164,11 +168,11 @@ public class Utilisateur {
         this.age = age;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date_de_naissance;
     }
 
-    public void setDate(String date_de_naissance) {
+    public void setDate(Date date_de_naissance) {
         this.date_de_naissance = date_de_naissance;
     }
 
@@ -188,19 +192,19 @@ public class Utilisateur {
         this.password = password;
     }
 
-    public String getRole() {
+    public Role getRoles() {
         return role;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoles(Role roles) {
+        this.role = roles;
     }
 
-    public String getDate_de_naissance() {
+    public Date getDate_de_naissance() {
         return date_de_naissance;
     }
 
-    public void setDate_de_naissance(String date_de_naissance) {
+    public void setDate_de_naissance(Date date_de_naissance) {
         this.date_de_naissance = date_de_naissance;
     }
 

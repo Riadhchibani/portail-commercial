@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-publication.component.css']
 })
 export class AddPublicationComponent implements OnInit {
+  
+  value = '';
 
   constructor() { }
 
