@@ -10,15 +10,12 @@ export class BodyClientComponent implements OnInit {
   @Input() typeOfOutput: string = '';
   @Input() usernameAdmin: string = '';
   items = new Map([
-    ['itemOfAddClient', false],
-    ['itemOfCharts', false],
-    ['itemOfClient', false],
-    ['itemOfProduction', false],
-    ['itemOfAddProduction', false],
+    ['itemOfPublication', false],
+    ['itemOfCommand', false],
+    ['itemOfaddDemand', false],
+    ['itemOfdemand', false],
     ['itemOfBill', false],
-    ['itemOfAddBill', false],
-    ['itemOfReclamation', false],
-    ['itemOfDemandProduct', false]
+    ['itemOfReclamation', false]
   ]
   );
 

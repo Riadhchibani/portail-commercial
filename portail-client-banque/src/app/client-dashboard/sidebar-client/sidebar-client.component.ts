@@ -10,18 +10,12 @@ export class SidebarClientComponent implements OnInit {
   @Output() newItemEvent = new EventEmitter<string>();
 
   itemOfPublication: string = "itemOfPublication";
-  itemOfAddClient: string = "itemOfAddClient";
-  itemOfCharts: string = "itemOfCharts";
-  itemOfProduction: string = "itemOfProduction";
-  itemOfAddProduction: string = "itemOfAddProduction";
+  itemOfCommand: string = "itemOfCommand";
+  itemOfaddDemand: string = "itemOfaddDemand";
+  itemOfdemand: string = "itemOfdemand";
   itemOfBill: string = "itemOfBill";
-  itemOfAddBill: string = "itemOfAddBill";
   itemOfReclamation: string = "itemOfReclamation";
-  itemOfDemandProduct: string = "itemOfDemandProduct";
-  pubState: boolean = false;
-  billState: boolean = false;
-  commandState: boolean = false;
-
+  demandState: boolean = false;
 
   addNewItem(value: string) {
     this.newItemEvent.emit(value);

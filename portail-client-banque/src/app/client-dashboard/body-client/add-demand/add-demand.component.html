@@ -1,1 +1,30 @@
-<p>add-demand works!</p>
+<form class="example-form" [formGroup]="profileForm">
+  <div class="container">
+    <div class="row">
+      <h2>Ajouter une demande</h2>
+    </div>
+    <div class="row">
+      <div class="col-6">
+        <mat-form-field class="example-full-width">
+          <mat-label>Nom de produit</mat-label>
+          <input matInput placeholder="" formControlName="nomproduit" required>
+        </mat-form-field>
+      </div>
+      <div class="col-6">
+        <mat-form-field appearance="fill">
+            <mat-label>description</mat-label>
+            <textarea matInput value="" formControlName="description" required></textarea>
+          </mat-form-field>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-4">
+          <input type="submit" name="add" class="btn btn-primary" (click)="addDemand()" value="submit">
+        </div>
+        <div class="col-3">
+          <button type="reset" class="btn btn-default">Reset</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

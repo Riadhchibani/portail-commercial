@@ -1,8 +1,13 @@
 package com.example.portailClient.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
-import java.util.Date;
+
+import java.sql.Date;
+import java.util.List;
+
 
 import static javax.persistence.GenerationType.*;
 
@@ -83,17 +88,6 @@ public class Utilisateur {
     @ManyToOne
     private Role role;
 
-    /*@OneToMany
-    private Publication publication;
-
-    @OneToOne
-    private Produit produit;
-
-    @OneToMany
-    private DemandeProduct demandeProduct;
-*/
-
-    //private Reclamation reclamation;
 
     public Utilisateur(
             String nom,
@@ -112,7 +106,7 @@ public class Utilisateur {
         this.tel = tel;
         this.username = username;
         this.password = password;
-        this.etat=etat;
+        this.etat = etat;
     }
 
 
@@ -192,13 +186,6 @@ public class Utilisateur {
         this.password = password;
     }
 
-    public Role getRoles() {
-        return role;
-    }
-
-    public void setRoles(Role roles) {
-        this.role = roles;
-    }
 
     public Date getDate_de_naissance() {
         return date_de_naissance;
@@ -215,4 +202,14 @@ public class Utilisateur {
     public void setEtat(boolean etat) {
         this.etat = etat;
     }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+
 }

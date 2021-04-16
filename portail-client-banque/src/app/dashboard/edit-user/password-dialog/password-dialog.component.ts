@@ -16,9 +16,6 @@ export class PasswordDialogComponent implements OnInit {
   ngOnInit(): void {
 
   }
-  test(){
-    console.log(this.valPassword);
-   
-  }
+  
 
 }

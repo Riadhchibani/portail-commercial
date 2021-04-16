@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../user.service';
 import { Utilisateur } from '../../model/utilisateur'
 import { HttpErrorResponse } from '@angular/common/http';
+import { Role } from 'src/app/model/Role';
 
 @Component({
   selector: 'app-left-side',
@@ -11,32 +12,35 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class LeftSideComponent implements OnInit {
 
-  public users: Utilisateur | undefined;
+  public user = new Utilisateur();
   public username: String = '';
   public password: String = '';
   public hide = true;
+  public role: Role | undefined;
 
-  constructor(private router: Router, private userService: UserService) { }
+  constructor(private router: Router, private userService: UserService, private routerService: ActivatedRoute ) { }
 
   ngOnInit(): void {
+    console.log("-------------------------------------");
+    console.log(this.routerService.data);
+    console.log("-------------------------------------");
 
   }
 
   onSubmit() {
     this.userService.findbyNamepwd(this.username, this.password)
       .subscribe(data => {
-        console.log(data.role+ " " + data.etat);
-        if (data.role == "Client" && data.etat == true) {
+        if (data.role?.roles == "Client" && data.etat == true) {
           this.router.navigate(['client/dashboard', data.username]);
-        } else if (data.role == "Admin") {
+        } else if (data.role?.roles == "Admin") {
           this.router.navigate(['dashboard', data.username]);
         } else {
           this.router.navigate(['NotFoundError']);
         }
       },
         (error: HttpErrorResponse) => {
-          window.location.reload();
           //alert(error.message);
+          window.location.reload();
         }
       )
   }

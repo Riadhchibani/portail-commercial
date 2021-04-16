@@ -1,3 +1,18 @@
-<div *ngIf="items.get('itemOfDemandProduct')">
-    <app-add-demand></app-add-demand>
+<div *ngIf="items.get('itemOfPublication')">
+  <app-publication-client></app-publication-client>
+</div>
+<div *ngIf="items.get('itemOfBill')">
+  <app-bill-client></app-bill-client>
+</div>
+<div *ngIf="items.get('itemOfCommand')">
+  <app-command-client></app-command-client>
+</div>
+<div *ngIf="items.get('itemOfdemand')">
+  <app-demand-client></app-demand-client>
+</div>
+<div *ngIf="items.get('itemOfaddDemand')">
+  <app-add-demand></app-add-demand>
+</div>
+<div *ngIf="items.get('itemOfReclamation')">
+  <app-reclamation-client></app-reclamation-client>
 </div>

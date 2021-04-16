@@ -3,3 +3,18 @@
   top: 13%;
   left: 30%;
 }
+app-body-client{
+  position: absolute;
+  top: 82px;
+  left: 25%;
+  
+}
+
+app-navbar-client {
+  position: absolute;
+}
+
+app-sidebar-client {
+  position: absolute;
+
+}

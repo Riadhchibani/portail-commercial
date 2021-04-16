@@ -8,21 +8,26 @@
       <mat-icon id="micon" mat-list-icon>public</mat-icon>
       <h4 mat-line>Publications</h4>
     </mat-list-item>
-    <mat-list-item class="rowList" (click)="addNewItem(itemOfPublication)">
+    <mat-list-item class="rowList" (click)="addNewItem(itemOfBill)">
       <mat-icon id="micon" mat-list-icon>note</mat-icon>
       <h4 mat-line>Factures</h4>
     </mat-list-item>
-    <mat-list-item class="rowList" (click)="addNewItem(itemOfPublication)">
+    <mat-list-item class="rowList" (click)="addNewItem(itemOfCommand)">
       <mat-icon id="micon" mat-list-icon>assignment</mat-icon>
       <h4 mat-line>Commandes</h4>
     </mat-list-item>
-    <mat-list-item class="rowList" (click)="addNewItem(itemOfDemandProduct)">
-      <mat-icon id="micon" mat-list-icon>add_shopping_cart</mat-icon>
-      <h4 mat-line>Ajouter un Demande</h4>
+    <mat-list-item class="rowList" (click)="addNewItem(itemOfdemand)" (click)="demandState = !demandState">
+      <mat-icon id="micon" mat-list-icon>shopping_cart</mat-icon>
+      <h4 mat-line>Les demandes</h4>
+      <mat-icon id="miconadd" mat-list-icon>add</mat-icon>
     </mat-list-item>
-    <mat-list-item class="rowList" (click)="addNewItem(itemOfPublication)">
+    <mat-list-item class="space" (click)="addNewItem(itemOfaddDemand)" *ngIf="demandState">
+      <mat-icon id="micon" mat-list-icon>add_shopping_cart</mat-icon>
+      <h4 mat-line>Ajouter une Demande</h4>
+    </mat-list-item>
+    <mat-list-item class="rowList" (click)="addNewItem(itemOfReclamation)">
       <mat-icon id="micon" mat-list-icon>new_releases</mat-icon>
-      <h4 mat-line>Reclamation</h4>
+      <h4 mat-line>Créer une réclamation</h4>
     </mat-list-item>
   </mat-nav-list>
 </div>

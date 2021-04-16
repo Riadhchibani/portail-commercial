@@ -4,7 +4,6 @@
     <table mat-table [dataSource]="dataTableUser" class="mat-elevation-z8">
       <!-- ID Column -->
       <ng-container matColumnDef="id">
-        <span *matCellDef="let element">XXXXXXXXXZZZ {{element.id}}</span> 
         <th mat-header-cell *matHeaderCellDef> ID </th>
         <td mat-cell *matCellDef="let element"> {{element.id}} </td>
       </ng-container>
@@ -77,13 +76,13 @@
         <div class="col-4">
           <mat-form-field class="example-full-width">
             <mat-label>Nom</mat-label>
-            <input matInput placeholder="" value="" formControlName="nom" >
+            <input matInput placeholder="" value="" formControlName="nom">
           </mat-form-field>
         </div>
         <div class="col-3">
           <mat-form-field class="example-full-width">
             <mat-label>Prenom</mat-label>
-            <input matInput placeholder="" value="" formControlName="prenom" >
+            <input matInput placeholder="" value="" formControlName="prenom">
           </mat-form-field>
         </div>
       </div>
@@ -92,7 +91,7 @@
           <mat-form-field id="widthIn" class="example-full-width">
             <mat-label>Email</mat-label>
             <input type="email" matInput [errorStateMatcher]="matcher" placeholder="Ex. pat@example.com"
-              formControlName="Email" >
+              formControlName="Email">
             <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('')">
               Please enter a valid email address
             </mat-error>
@@ -106,13 +105,13 @@
         <div class="col-4">
           <mat-form-field class="example-full-width">
             <mat-label>username</mat-label>
-            <input matInput placeholder="" value="" formControlName="username" >
+            <input matInput placeholder="" value="" formControlName="username">
           </mat-form-field>
         </div>
         <div class="col-5">
           <mat-form-field class="example-full-width">
             <mat-label>Mot de passe</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" >
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
             <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
               [attr.aria-pressed]="hide">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -135,17 +134,14 @@
         <div class="col-4">
           <mat-form-field class="example-full-width">
             <mat-label>Tel</mat-label>
-            <input type="tel" matInput placeholder="" value="" formControlName="tel" >
+            <input type="tel" matInput placeholder="" value="" formControlName="tel">
           </mat-form-field>
         </div>
         <div class="col-5">
           <mat-form-field class="example-full-width" appearance="fill">
             <mat-label>date de naissance</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="date" readonly="readonly" class="form-control"
-              name="picker" >
-            <mat-datepicker-toggle matSuffix [for]="picker">
-              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
-            </mat-datepicker-toggle>
+            <input matInput type="date" [matDatepicker]="picker" formControlName="date" class="form-control"
+              name="picker" />
             <mat-datepicker #picker></mat-datepicker>
           </mat-form-field>
         </div>

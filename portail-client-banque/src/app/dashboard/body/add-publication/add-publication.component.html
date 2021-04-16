@@ -1,38 +1,43 @@
 <div class="container">
-  <div class="row">
-    <div class="col-6 offset-2">
-      <mat-card class="example-card">
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-        <mat-card-title>
-          <mat-form-field class="example-form-field">
-            <mat-label>Nom de publication</mat-label>
-            <input matInput type="text" [(ngModel)]="value">
-            <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-form-field>
-        </mat-card-title>
-        <mat-card-subtitle>
-          <mat-form-field appearance="fill">
-            <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-          </mat-form-field>
-        </mat-card-subtitle>
-        <mat-card-content>
-          <p>
-            <mat-form-field appearance="fill">
-              <mat-label>Textarea</mat-label>
-              <textarea matInput></textarea>
+  <form class="example-form" [formGroup]="profileFormPub">
+    <div class="row">
+      <div class="col-6 offset-2">
+        <mat-card class="example-card">
+          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+            alt="Photo of a Shiba Inu">
+          <mat-card-subtitle>
+            <mat-form-field class="example-form-field">
+              <mat-label>intitulé</mat-label>
+              <input matInput placeholder="" value="" formControlName="title">
             </mat-form-field>
-          </p>
-        </mat-card-content>
-        <mat-card-actions>
-          <button mat-button>publier</button>
-        </mat-card-actions>
-      </mat-card>
+            <br>
+            <!--Date : {{today | date:'shortDate'}}-->
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>date de naissance</mat-label>
+              <input matInput type='date' #myDate formControlName="date" />
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>date de naissance</mat-label>
+              <input matInput type='date' #myDate formControlName="lastdate" />
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <br>
+          </mat-card-subtitle>
+          <mat-card-content>
+            <p>
+              <mat-form-field appearance="fill">
+                <mat-label>Description</mat-label>
+                <textarea matInput value="" formControlName="description" required></textarea>
+              </mat-form-field>
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button (click)="addPublication()">publier</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
     </div>
-  </div>
-  <br>
+  </form>
 </div>

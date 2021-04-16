@@ -18,7 +18,6 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.usernameOfUser = this.routerService.snapshot.params.user;
     this.usernameValue = this.routerService.snapshot.params.username
   }
 

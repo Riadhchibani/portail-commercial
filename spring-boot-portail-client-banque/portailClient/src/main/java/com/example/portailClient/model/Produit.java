@@ -4,42 +4,43 @@ import javax.persistence.*;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
-@Entity
+@Entity(
+        name = "Produit"
+)
 @Table(
         name = "Prouduit"
 )
 public class Produit {
     @Id
     @Column(
-            name = "id_Product",
+            name = "id_produit",
             nullable = false
     )
     @GeneratedValue(
             strategy = SEQUENCE
     )
-    private Long id_Product;
+    private Long id_produit;
     @Column(
             name = "name",
-            nullable = false,
-            unique = true
+            nullable = false
     )
     private String name;
 
 
 
-    public Produit(Long id_Product, String name) {
-        this.id_Product = id_Product;
+    public Produit(Long id_produit, String name) {
+        this.id_produit = id_produit;
         this.name = name;
     }
 
     public Produit() {}
 
     public Long getId_Product() {
-        return id_Product;
+        return id_produit;
     }
 
     public void setId_Product(Long id_Product) {
-        this.id_Product = id_Product;
+        this.id_produit = id_Product;
     }
 
     public String getName() {

@@ -1,10 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Utilisateur } from 'src/app/model/utilisateur';
 import { UserService } from 'src/app/user.service';
-import { DatePipe } from '@angular/common'
 import { Role } from 'src/app/model/Role';
 
 
@@ -30,7 +29,7 @@ export class AddUserComponent {
   hide = true;
   matcher = new MyErrorStateMatcher();
 
-  constructor(private userService: UserService){}
+  constructor(private userService: UserService) { }
 
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -52,7 +51,7 @@ export class AddUserComponent {
     date: new FormControl(''),
   });
 
-  role = new Role() ;
+  role = new Role();
   take(value: any) {
     this.role = (value.target.value == 'Admin' || 'Client' ? value.target.value : null);
   }
@@ -68,19 +67,27 @@ export class AddUserComponent {
     )
   }
 
+
+
+
+
+  roleUser = new Role(2, 'Client');
+  user = new Utilisateur(undefined,
+    this.profileForm.value.nom,
+    this.profileForm.value.prenom,
+    this.profileForm.value.Email,
+    0,//edit 
+    new Date(),
+    this.profileForm.value.tel,
+    this.profileForm.value.username,
+    this.profileForm.value.password,
+    this.roleUser);
+
+
   onSubmit() {
-    let user = new Utilisateur(
-      undefined,
-      this.profileForm.value.nom,
-      this.profileForm.value.prenom,
-      this.profileForm.value.Email,
-      20,//edit 
-      this.profileForm.value.date,
-      this.profileForm.value.tel,
-      this.profileForm.value.username,
-      this.profileForm.value.password,
-      this.role
-    );
-    this.addUser(user);
+    let timeDiff = Math.abs(Date.now() - new Date((this.user.date == null ? new Date() : this.user.date)).getTime());
+    this.user.setAge(Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25));
+    this.addUser(this.user);
   }
+
 }

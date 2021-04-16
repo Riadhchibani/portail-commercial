@@ -1,7 +1,7 @@
 package com.example.portailClient.model;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
@@ -26,15 +26,13 @@ public class Publication {
     )
     private Long id_pub;
     @Column(
-            name = "publication",
-            nullable = false,
-            columnDefinition = "TEXT"
+            name = "title_pub",
+            nullable = false
     )
-    private String publication;
+    private String title_pub;
     @Column(
             name = "state",
-            nullable = false,
-            columnDefinition = "TEXT"
+            nullable = false
     )
     private String state;
     @Column(
@@ -53,19 +51,14 @@ public class Publication {
     )
     private String description;
 
-    @ManyToOne
+
+    @OneToOne
     private Utilisateur utilisateur;
 
-    public Publication(Long id_pub, String publication, String state, Date first_date, Date last_date, String description) {
-        this.id_pub = id_pub;
-        this.publication = publication;
-        this.state = state;
-        this.first_date = first_date;
-        this.last_date = last_date;
-        this.description = description;
-    }
-    public Publication(String publication, String state, Date first_date, Date last_date, String description) {
-        this.publication = publication;
+
+
+    public Publication(String title_pub, String state, Date first_date, Date last_date, String description) {
+        this.title_pub = title_pub;
         this.state = state;
         this.first_date = first_date;
         this.last_date = last_date;
@@ -83,12 +76,12 @@ public class Publication {
         this.id_pub = id_pub;
     }
 
-    public String getPublication() {
-        return publication;
+    public String getTitle_pub() {
+        return title_pub;
     }
 
-    public void setPublication(String publication) {
-        this.publication = publication;
+    public void setTitle_pub(String title_pub) {
+        this.title_pub = title_pub;
     }
 
     public String getState() {
@@ -115,11 +108,19 @@ public class Publication {
         this.last_date = last_date;
     }
 
-    public String getText() {
+    public String getDescription() {
         return description;
     }
 
-    public void setText(String description) {
+    public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
     }
 }

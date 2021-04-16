@@ -52,6 +52,14 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ClientTableComponent } from './dashboard/body/client-table/client-table.component';
 import { ChartsComponent } from './dashboard/body/charts/charts.component';
 import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { PublicationClientComponent } from './client-dashboard/body-client/publication-client/publication-client.component';
+import { BillClientComponent } from './client-dashboard/body-client/bill-client/bill-client.component';
+import { CommandClientComponent } from './client-dashboard/body-client/command-client/command-client.component';
+import { DemandClientComponent } from './client-dashboard/body-client/demand-client/demand-client.component';
+import { ReclamationClientComponent } from './client-dashboard/body-client/reclamation-client/reclamation-client.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatStepperModule } from '@angular/material/stepper';
 
 
 @NgModule({
@@ -82,8 +90,12 @@ import { MatCardModule } from '@angular/material/card';
     DemandComponent,
     AddDemandComponent,
     ClientTableComponent,
-    ChartsComponent
-
+    ChartsComponent,
+    PublicationClientComponent,
+    BillClientComponent,
+    CommandClientComponent,
+    DemandClientComponent,
+    ReclamationClientComponent
   ],
   imports: [
     BrowserModule,
@@ -109,7 +121,10 @@ import { MatCardModule } from '@angular/material/card';
     MatMenuModule,
     MatDialogModule,
     ScrollingModule,
-    MatCardModule
+    MatCardModule,
+    MatGridListModule,
+    MatExpansionModule,
+    MatStepperModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

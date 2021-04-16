@@ -1,0 +1,21 @@
+<ng-template matStepLabel>Les demande</ng-template>
+<div class="container">
+  <div class="row" *ngFor="let element of dataSource">
+    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          produit : {{element.produitName}}
+        </mat-panel-title>
+        <mat-panel-description>
+          <!--<p>L'etat : {{element.etat}}</p>-->
+          <p>{{element.demand_date}}</p>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p>Client : User</p>
+      <p>Description : {{element.description}}</p>
+      <mat-action-row>
+        <button mat-button color="primary" (click)="deleteDemand(element.id_demande)">Supprimer</button>
+      </mat-action-row>
+    </mat-expansion-panel><br>
+  </div>
+</div>

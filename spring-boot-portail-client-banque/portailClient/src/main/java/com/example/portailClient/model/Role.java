@@ -20,10 +20,9 @@ public class Role {
             name = "role"
     )
     private String roles;
-    @OneToMany(
-            mappedBy = "role"
-    )
-    private List<Utilisateur> utilisateur = new ArrayList<>();
+
+    @OneToMany
+    private List<Permission> permission = new ArrayList<Permission>();
 
 
 
@@ -43,12 +42,12 @@ public class Role {
         this.id_role = id_role;
     }
 
-    public String getRole() {
+    public String getRoles() {
         return roles;
     }
 
-    public void setRole(String role) {
-        this.roles = role;
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 }
 

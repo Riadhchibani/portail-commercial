@@ -26,10 +26,6 @@ public class UtilisateurService {
 
     }
 
-    public UtilisateurService() {
-
-    }
-
     public List<Utilisateur> getAllUsers() {
         List<Utilisateur> users = new ArrayList<Utilisateur>();
         utilisateurRepository.findAll().forEach(user -> users.add(user));

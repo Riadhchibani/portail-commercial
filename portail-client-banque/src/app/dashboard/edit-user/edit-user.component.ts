@@ -7,6 +7,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Utilisateur } from 'src/app/model/utilisateur';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { Role } from 'src/app/model/Role';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -14,7 +15,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
   }
 }
-interface Role {
+interface Roles {
   value: string;
 }
 @Component({
@@ -31,20 +32,20 @@ export class EditUserComponent implements OnInit {
     Validators.required,
     Validators.email,
   ]);
-  roles: Role[] = [
+  roles: Roles[] = [
     { value: 'User' },
     { value: 'Admin' }
   ];
-  role: string = '';
+  role = new Role();
   take(value: any) {
-    this.role = (value.target.value == 'Admin' || 'User' ? value.target.value : null);
+    this.role.roles = (value.target.value == 'Admin' || 'User' ? value.target.value : null);
   }
   matcher = new MyErrorStateMatcher();
   hide = true;
   testResult: boolean = false;
   dataSource: Utilisateur[] = [];
   dataTableUser: Utilisateur[] = [];
-  localData: Utilisateur = new Utilisateur();
+  localData: Utilisateur = new Utilisateur(0);
 
   displayedColumns: string[] = ['id', 'nom', 'prenom', 'email', 'age', 'date', 'tel', 'username', 'password', 'role', 'etat'];
 
@@ -67,11 +68,9 @@ export class EditUserComponent implements OnInit {
 
   getUsersById(id: number) {
     this.userService.findById(id).subscribe(
-       data => {
-        console.log(data);
+      data => {
         this.localData = data;
         this.dataTableUser.push(data);
-        console.log(this.localData.password);
       },
       (error: HttpErrorResponse) => {
         alert(error);
@@ -99,27 +98,33 @@ export class EditUserComponent implements OnInit {
     )
   }
 
+  roleUser = new Role(2, 'Client');
+
   onSubmit() {
-    console.log(this.profileForm.value.nom);
     let user = new Utilisateur(
       this.routerService.snapshot.params.userId,
       (this.profileForm.value.nom == '' ? this.localData.nom : this.profileForm.value.nom),
       (this.profileForm.value.prenom == '' ? this.localData.prenom : this.profileForm.value.prenom),
       (this.profileForm.value.Email == '' ? this.localData.email : this.profileForm.value.Email),
-      20,//edit 
+      0,//edit 
       (this.profileForm.value.date == '' ? this.localData.date : this.profileForm.value.date),
       (this.profileForm.value.tel == '' ? this.localData.tel : this.profileForm.value.tel),
       (this.profileForm.value.username == '' ? this.localData.username : this.profileForm.value.username),
       (this.profileForm.value.password == '' ? this.localData.password : this.profileForm.value.password),
-      this.role
+      this.roleUser
     );
+    let timeDiff = Math.abs(Date.now() - new Date((user.date == null ? new Date() : user.date)).getTime());
+    user.setAge(Math.floor(timeDiff / (1000 * 3600 * 24) / 365.25));
     this.update(user);
   }
+
+
   update(user: Utilisateur) {
     this.userService.updateUser(user)
       .subscribe(
         data => {
           alert("confirm");
+          //router to go back
         },
         (error: HttpErrorResponse) => {
           //window.location.reload();
