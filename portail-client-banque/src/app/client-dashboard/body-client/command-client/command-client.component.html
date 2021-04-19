@@ -1,1 +1,47 @@
-<p>command-client works!</p>
+<!---->
+<div class="container" *ngIf="!open">
+  <div class="row">
+    <div class="col-6" *ngFor="let element of dataSource">
+      <div class="space">
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{element.produit}}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{element.date}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>Prix : {{element.prix}}</p>
+          <p>Description : {{element.description}}</p>
+          <p>
+            <mat-slide-toggle color="primary" checked="{{element.acceptation}}"
+              (change)="change($event,element.id_commande)"></mat-slide-toggle>
+          </p>
+        </mat-expansion-panel>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" *ngIf="open">
+  <div class="row" id="styitem">
+    <div class="col" *ngFor="let element of dataSource">
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{element.produit}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{element.date}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>Prix : {{element.prix}}</p>
+        <p>Description : {{element.description}}</p>
+        <p>
+          <mat-slide-toggle color="primary" checked="{{element.acceptation}}"
+            (change)="change($event,element.id_commande)"></mat-slide-toggle>
+        </p>
+      </mat-expansion-panel>
+    </div>
+  </div>
+</div>

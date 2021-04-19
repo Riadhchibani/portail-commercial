@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Publication } from 'src/app/model/Publication';
 import { UserService } from 'src/app/user.service';
@@ -12,6 +13,7 @@ import { UserService } from 'src/app/user.service';
 
 export class PublicationComponent implements OnInit {
 
+  dataSource: Publication[] = [];
 
   csvInputChange(fileInputEvent: any) {
     //console.log(fileInputEvent.target.files[0]);
@@ -29,6 +31,17 @@ export class PublicationComponent implements OnInit {
       }
     )
   }
-  dataSource: Publication[] = [];
- 
+
+  deletePub(id: any) {
+    this.userService.deletePubById(id).subscribe(
+      data => {
+        alert("Deleted");
+    this.ngOnInit();
+
+      }
+    ), (error: HttpErrorResponse) => {
+      window.location.reload();
+    }
+  }
+
 }

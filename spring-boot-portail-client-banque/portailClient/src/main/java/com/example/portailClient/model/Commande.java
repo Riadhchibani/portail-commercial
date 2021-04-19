@@ -1,7 +1,7 @@
 package com.example.portailClient.model;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
@@ -34,38 +34,55 @@ public class Commande {
     private Date date; //date de commande
 
     @Column(
-           name = "description",
+            name = "description",
             nullable = false
     )
     private String description;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(
-            name = "id_produit",
-            referencedColumnName = "id_produit",
-            nullable = false
-    )
-    private Produit produit;
 
     @Column(
-            name = "accept",
+            name = "produit",
+            //referencedColumnName = "id_produit",
             nullable = false
     )
-    private boolean accept;
+    private String produit;
+
+    @Column(
+            name = "prix",
+            nullable = false
+    )
+    private Long prix;
+
+    @Column(
+            name = "acceptation",
+            nullable = false
+    )
+    private boolean acceptation;
 
     @ManyToOne
-    private Utilisateur utilisateur;
+    private Utilisateur utilisateur_Admin;
+
+    @ManyToOne
+    private Utilisateur utilisateur_Client;
+
+    @OneToOne
+    @JoinColumn(
+            nullable = false,
+            unique = true
+    )
+    private DemandeProduit demande;
 
 
-    public Commande(){
+    public Commande() {
 
     }
 
-    public Commande(Date date, String description, Produit produit, boolean accept) {
+    public Commande(Date date, String description, String produit, Long prix, boolean acceptation) {
         this.date = date;
         this.description = description;
         this.produit = produit;
-        this.accept = accept;
+        this.prix = prix;
+        this.acceptation = acceptation;
     }
 
     public Long getId_commande() {
@@ -92,27 +109,51 @@ public class Commande {
         this.description = description;
     }
 
-    public Produit getProduit() {
+    public String getProduit() {
         return produit;
     }
 
-    public void setProduit(Produit produit) {
+    public void setProduit(String produit) {
         this.produit = produit;
     }
 
-    public boolean isAccept() {
-        return accept;
+    public Long getPrix() {
+        return prix;
     }
 
-    public void setAccept(boolean accept) {
-        this.accept = accept;
+    public void setPrix(Long prix) {
+        this.prix = prix;
     }
 
-    public Utilisateur getUtilisateur() {
-        return utilisateur;
+    public Utilisateur getUtilisateur_Admin() {
+        return utilisateur_Admin;
     }
 
-    public void setUtilisateur(Utilisateur utilisateur) {
-        this.utilisateur = utilisateur;
+    public void setUtilisateur_Admin(Utilisateur utilisateur_Admin) {
+        this.utilisateur_Admin = utilisateur_Admin;
+    }
+
+    public boolean isAcceptation() {
+        return acceptation;
+    }
+
+    public void setAcceptation(boolean acceptation) {
+        this.acceptation = acceptation;
+    }
+
+    public Utilisateur getUtilisateur_Client() {
+        return utilisateur_Client;
+    }
+
+    public void setUtilisateur_Client(Utilisateur utilisateur_Client) {
+        this.utilisateur_Client = utilisateur_Client;
+    }
+
+    public DemandeProduit getDemande() {
+        return demande;
+    }
+
+    public void setDemande(DemandeProduit demande) {
+        this.demande = demande;
     }
 }

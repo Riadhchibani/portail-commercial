@@ -43,5 +43,14 @@ export class ReclamationComponent implements OnInit {
     )
 
   }
-
+  deleteReclamation(id: any) {
+    this.userService.deleteReclamationById(id).subscribe(
+      data => {
+        alert("Deleted");
+        this.ngOnInit();
+      }, (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  }
 }

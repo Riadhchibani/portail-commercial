@@ -40,19 +40,19 @@ public class Reclamation {
     )
     private String etat_reclamation;
     @Column(
-            name = "date_create",
+            name = "date",
             nullable = false
     )
-    private Date date_create;
+    private Date date;
 
     @OneToOne
     private Utilisateur utilisateur;
 
-    public Reclamation(Long id_reclamation, String description, String etat_reclamation, Date date_create, String title_reclamation) {
+    public Reclamation(Long id_reclamation, String description, String etat_reclamation, Date date, String title_reclamation) {
         this.id_reclamation = id_reclamation;
         this.description = description;
         this.etat_reclamation = etat_reclamation;
-        this.date_create = date_create;
+        this.date = date;
         this.title_reclamation = title_reclamation;
     }
 
@@ -83,12 +83,12 @@ public class Reclamation {
         this.etat_reclamation = etat_reclamation;
     }
 
-    public Date getDate_create() {
-        return date_create;
+    public Date getDate() {
+        return date;
     }
 
-    public void setDate_create(Date date_create) {
-        this.date_create = date_create;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public Utilisateur getUtilisateur() {

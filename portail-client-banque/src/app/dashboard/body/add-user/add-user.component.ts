@@ -49,6 +49,7 @@ export class AddUserComponent {
     Email: new FormControl(''),
     tel: new FormControl(''),
     date: new FormControl(''),
+    code: new FormControl(''),
   });
 
   role = new Role();
@@ -57,7 +58,7 @@ export class AddUserComponent {
   }
 
   addUser(user: Utilisateur) {
-    this.userService.save(user).subscribe(
+   this.userService.save(user).subscribe(
       data => {
         alert('Added');
       },
@@ -81,6 +82,7 @@ export class AddUserComponent {
     this.profileForm.value.tel,
     this.profileForm.value.username,
     this.profileForm.value.password,
+    this.profileForm.value.code,
     this.roleUser);
 
 

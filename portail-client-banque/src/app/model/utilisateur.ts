@@ -13,18 +13,19 @@ export class Utilisateur {
         public tel?: number,
         public username?: string,
         public password?: string,
+        public code?: string,
         public role?: Role,
         public etat?: boolean,
         public reclamation?: Array<Reclamation>,
         public publication?: Array<Publication>
     ) { }
 
-   
+
     public setAge(age: number) {
         this.age = age;
     }
 
-    public getId(){
+    public getId() {
         return this.id;
     }
 }

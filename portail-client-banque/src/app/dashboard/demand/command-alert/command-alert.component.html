@@ -1,0 +1,43 @@
+<div *ngIf="testAcceptaion">
+  <h1>Accepté <mat-icon style="color: rgb(15, 187, 63);">done_outline</mat-icon>
+  </h1>
+</div>
+<div *ngIf="(!testAcceptaion && !test)">
+  <form class="example-form" [formGroup]="profileForm">
+    <div class="container">
+      <div class="row">
+        <h2>Commande</h2>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <mat-form-field class="example-full-width">
+            <mat-label>Prix</mat-label>
+            <input matInput placeholder="" formControlName="prix" required>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <mat-form-field class="example-full-width">
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="" formControlName="description" required>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <input type="submit" name="add" class="btn btn-primary" (click)="onSubmit()" value="submit">
+        </div>
+      </div>
+    </div>
+  </form>
+
+</div>
+<div *ngIf="test">
+  <div class="row">
+    Prix : {{prix_res}}
+  </div>
+  <div class="row">
+    Description : {{desc_res}}
+  </div>
+</div>

@@ -8,11 +8,14 @@
               {{element.title_reclamation}}
             </mat-panel-title>
             <mat-panel-description>
-              {{element.date_create}}
+              {{element.date}}
             </mat-panel-description>
           </mat-expansion-panel-header>
           <p>Client : {{userClient}}</p>
           <p>Description : {{element.description}}</p>
+          <mat-action-row>
+            <button mat-button color="primary" (click)="deleteReclamation(element.id_reclamation)">Supprimer</button>
+          </mat-action-row>
         </mat-expansion-panel>
       </div>
     </div>
@@ -27,12 +30,15 @@
             {{element.title_reclamation}}
           </mat-panel-title>
           <mat-panel-description>
-            {{element.date_create}}
+            {{element.date}}
           </mat-panel-description>
         </mat-expansion-panel-header>
         <p>Client : {{userClient}}</p>
 
         <p>Description : {{element.description}}</p>
+        <mat-action-row>
+          <button mat-button color="primary" (click)="deleteReclamation(element.id_reclamation)">Supprimer</button>
+        </mat-action-row>
       </mat-expansion-panel>
     </div>
   </div>

@@ -6,6 +6,7 @@ import { Utilisateur } from './model/utilisateur'
 import { Publication } from './model/Publication';
 import { Reclamation } from './model/Reclamation';
 import { Demande } from './model/Demande';
+import { Commande } from './model/Commande';
 
 
 @Injectable({
@@ -110,9 +111,42 @@ export class UserService {
     return this.http.get<Demande[]>(`${this.usersUrl}/getDemandClient/${username}`);
   }
 
-  public deleteDemand(id: number): Observable<void>{
+  public deleteDemand(id: number): Observable<void> {
     return this.http.delete<void>(`${this.usersUrl}/deleteDemand/${id}`);
   }
- 
+
+  public deletePubById(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.usersUrl}/deletePub/${id}`);
+  }
+
+  public getReclamationsByUsername(username: string): Observable<Reclamation[]> {
+    return this.http.get<Reclamation[]>(`${this.usersUrl}/getReclamation/${username}`);
+  }
+
+  public getTest(username: string): Observable<boolean> {
+    return this.http.get<boolean>(`${this.usersUrl}/testUsername`);
+  }
+
+  public getCommandes(): Observable<Commande[]> {
+    return this.http.get<Commande[]>(`${this.usersUrl}/allCommandes`);
+  }
+
+  public addCommande(commande: Commande) {
+    const headers = { 'content-type': 'application/json' }
+    const body = JSON.stringify(commande);
+    return this.http.post(`${this.usersUrl}/addCommande`, body, { 'headers': headers });
+  }
+
+  public getCommandesByUsername(username: string): Observable<Commande[]> {
+    return this.http.get<Commande[]>(`${this.usersUrl}/getCommandes/${username}`);
+  }
+
+  public setAcceptionValue(id: number, state: boolean): Observable<void> {
+    return this.http.put<void>(`${this.usersUrl}/setAcceptation/${id}/${state}`, null);
+  }
+
+  public getCommandeByDemandeId(id: number): Observable<Commande> {
+    return this.http.get<Commande>(`${this.usersUrl}/getCommandeByDemandeId/${id}`);
+  }
 
 }

@@ -29,4 +29,9 @@ public class ReclamationController {
     public void dropReclamation(@PathVariable("id") Long id){
         this.reclamationService.deleteReclamation(id);
     }
+
+    @GetMapping("/getReclamation/{username}")
+    public List<Reclamation> getAllReclamationbyUsername(@PathVariable("username") String username){
+        return this.reclamationService.getAllReclamationByUsername(username);
+    }
 }

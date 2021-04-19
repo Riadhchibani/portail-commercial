@@ -18,14 +18,9 @@ export class LeftSideComponent implements OnInit {
   public hide = true;
   public role: Role | undefined;
 
-  constructor(private router: Router, private userService: UserService, private routerService: ActivatedRoute ) { }
+  constructor(private router: Router, private userService: UserService, private routerService: ActivatedRoute) { }
 
-  ngOnInit(): void {
-    console.log("-------------------------------------");
-    console.log(this.routerService.data);
-    console.log("-------------------------------------");
-
-  }
+  ngOnInit(): void { }
 
   onSubmit() {
     this.userService.findbyNamepwd(this.username, this.password)

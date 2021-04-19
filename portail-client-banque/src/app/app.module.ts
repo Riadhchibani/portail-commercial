@@ -60,6 +60,8 @@ import { DemandClientComponent } from './client-dashboard/body-client/demand-cli
 import { ReclamationClientComponent } from './client-dashboard/body-client/reclamation-client/reclamation-client.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatStepperModule } from '@angular/material/stepper';
+import { AddReclamationComponent } from './client-dashboard/body-client/add-reclamation/add-reclamation.component';
+import { CommandAlertComponent } from './dashboard/demand/command-alert/command-alert.component';
 
 
 @NgModule({
@@ -95,7 +97,9 @@ import { MatStepperModule } from '@angular/material/stepper';
     BillClientComponent,
     CommandClientComponent,
     DemandClientComponent,
-    ReclamationClientComponent
+    ReclamationClientComponent,
+    AddReclamationComponent,
+    CommandAlertComponent
   ],
   imports: [
     BrowserModule,

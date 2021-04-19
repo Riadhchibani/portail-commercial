@@ -14,7 +14,7 @@
                 <p>{{element.demand_date}}</p>
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <p>Client : User</p>
+            <p>Client : {{element.utilisateurClient?.username}}</p>
             <p>Description : {{element.description}}</p>
             <mat-action-row>
               <button mat-button color="primary" [disabled]="(element.utilisateurAdmin == null ? false : true)"
@@ -38,10 +38,11 @@
                 <p>{{element.demand_date}}</p>
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <p>Client : User</p>
+            <p>Client : {{element.utilisateurClient?.username}}</p>
             <p>Description : {{element.description}}</p>
             <mat-action-row>
               <button mat-button color="primary" (click)="removeDemand(element.id_demande)">Supprimer</button>
+              <button mat-button color="primary" (click)="reponseDemand(element.produitName,element.utilisateurClient?.username,element)">Commander</button>
             </mat-action-row>
           </mat-expansion-panel><br>
         </div>

@@ -40,11 +40,24 @@ public class UtilisateurService {
 
     public Utilisateur findbyNamepwd(String username, String password) {
         List<Utilisateur> listOfUser = getAllUsers();
-        Utilisateur user = listOfUser.stream()
+        return listOfUser.stream()
                 .filter(userName -> userName.getUsername().equals(username) && userName.getPassword().equals(password))
                 .findAny()
                 .get();
-        return user;
+
+    }
+
+    public String crypUsername(String str) {
+        char[] chars = str.toCharArray();
+        char[] res = new char[str.length()];
+        int i=0;
+        for (char c : chars) {
+            c += 6;
+            res[i] = c;
+            i++;
+        }
+        String ress = res.toString();
+        return ress;
     }
 
     public void dropUserById(Long id) {
@@ -77,6 +90,11 @@ public class UtilisateurService {
         Utilisateur user = this.utilisateurRepository.getOne(id);
         user.setEtat(stateUser);
         return this.utilisateurRepository.save(user);
+    }
+
+    public boolean testUsernameToken(String username) {
+
+        return false;
     }
 
 }

@@ -47,7 +47,7 @@ export class EditUserComponent implements OnInit {
   dataTableUser: Utilisateur[] = [];
   localData: Utilisateur = new Utilisateur(0);
 
-  displayedColumns: string[] = ['id', 'nom', 'prenom', 'email', 'age', 'date', 'tel', 'username', 'password', 'role', 'etat'];
+  displayedColumns: string[] = ['id', 'nom', 'prenom', 'email', 'age', 'date', 'tel', 'username', 'password', 'code', 'role', 'etat'];
 
   ngOnInit(): void {
     this.openDialog();
@@ -85,6 +85,7 @@ export class EditUserComponent implements OnInit {
     Email: new FormControl(''),
     tel: new FormControl(''),
     date: new FormControl(''),
+    code: new FormControl(''),
   });
 
   openDialog() {
@@ -111,6 +112,7 @@ export class EditUserComponent implements OnInit {
       (this.profileForm.value.tel == '' ? this.localData.tel : this.profileForm.value.tel),
       (this.profileForm.value.username == '' ? this.localData.username : this.profileForm.value.username),
       (this.profileForm.value.password == '' ? this.localData.password : this.profileForm.value.password),
+      (this.profileForm.value.code == '' ? this.localData.code : this.profileForm.value.code),
       this.roleUser
     );
     let timeDiff = Math.abs(Date.now() - new Date((user.date == null ? new Date() : user.date)).getTime());

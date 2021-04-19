@@ -1,31 +1,42 @@
-<form class="example-form" [formGroup]="profileForm">
-    <div class="container">
-      <div class="row">
-        <h2>Créer une réclamation</h2>
-      </div>
-      <div class="row">
-        <div class="col-6">
-          <mat-form-field class="example-full-width">
-            <mat-label>Titre de la réclamation</mat-label>
-            <input matInput placeholder="" formControlName="title_reclamation" required>
-          </mat-form-field>
-        </div>
-        <div class="col-6">
-          <mat-form-field appearance="fill">
-              <mat-label>description</mat-label>
-              <textarea matInput value="" formControlName="description" required></textarea>
-            </mat-form-field>
-        </div>
-        <br>
-        <div class="row">
-          <div class="col-4">
-            <input type="submit" name="add" class="btn btn-primary" (click)="addReclamationClient()" value="submit">
-          </div>
-          <div class="col-3">
-            <button type="reset" class="btn btn-default">Reset</button>
-          </div>
-        </div>
+<div class="container" *ngIf="!open">
+  <div class="row">
+    <div class="col-6" *ngFor="let element of dataSource">
+      <div class="space">
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{element.title_reclamation}}
+            </mat-panel-title>
+            <mat-panel-description>
+              {{element.date}}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p>Description : {{element.description}}</p>
+          <mat-action-row>
+            <button mat-button color="primary" (click)="deleteReclamation(element.id_reclamation)" >Supprimer</button>
+          </mat-action-row>
+        </mat-expansion-panel>
       </div>
     </div>
-  </form>
-  
+  </div>
+</div>
+<div class="container" *ngIf="open">
+  <div class="row" id="styitem">
+    <div class="col" *ngFor="let element of dataSource">
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{element.title_reclamation}}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{element.date}}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>Description : {{element.description}}</p>
+        <mat-action-row>
+          <button mat-button color="primary" (click)="deleteReclamation(element.id_reclamation)" >Supprimer</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+    </div>
+  </div>
+</div>

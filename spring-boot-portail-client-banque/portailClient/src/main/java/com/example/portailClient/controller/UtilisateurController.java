@@ -19,6 +19,8 @@ public class UtilisateurController {
     @Autowired
     private UtilisateurService utilisateurService;
 
+    
+
     @GetMapping("login/{username}/{password}")
     public Utilisateur login(@PathVariable("username") String username, @PathVariable("password") String password) {
         return this.utilisateurService.findbyNamepwd(username, password);
@@ -64,5 +66,9 @@ public class UtilisateurController {
         return this.utilisateurService.getUserById(id);
     }
 
+    @GetMapping("/testUsername/{variable}")
+    public boolean testUsername(@PathVariable("variable") String token){
+        return this.utilisateurService.testUsernameToken(token);
+    }
 
 }

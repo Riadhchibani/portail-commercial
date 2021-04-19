@@ -31,6 +31,7 @@ export class AddPublicationComponent implements OnInit {
   addPublication() {
 
     let publication = new Publication(
+      undefined,
       this.profileFormPub.value.title,
       "none",
       this.profileFormPub.value.date,

@@ -7,7 +7,7 @@ export class Reclamation {
         public title_reclamation?:number,
         public description?: string,
         public etat_reclamation?: string,
-        public date_create?: Date,
+        public date?: Date,
         public utilisateur?:Utilisateur
     ) {
 

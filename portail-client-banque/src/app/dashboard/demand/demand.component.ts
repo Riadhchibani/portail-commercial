@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Demande } from 'src/app/model/Demande';
 import { UserService } from 'src/app/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CommandAlertComponent } from './command-alert/command-alert.component';
 
 @Component({
   selector: 'app-demand',
@@ -17,13 +19,14 @@ export class DemandComponent implements OnInit {
   dataSource: Demande[] = [];
   dataSourceInbox: Demande[] = [];
 
-  constructor(private userService: UserService, private routerService: ActivatedRoute) { }
+  constructor(public dialog: MatDialog, private userService: UserService, private routerService: ActivatedRoute) { }
 
   ngOnInit() {
     this.userService.getUserbyUsername(this.routerService.snapshot.params.username).subscribe(
       data => {
         this.admin = data;
         this.getAllDemandsByAdminId(this.admin.id);
+
       }, (error) => {
         alert(error.message);
       }
@@ -37,6 +40,22 @@ export class DemandComponent implements OnInit {
         this.dataSource = data;
       }, (error: HttpErrorResponse) => {
         alert(error);
+      }
+    )
+  }
+
+  reponseDemand(productName: any, client: any, element: any) {
+    let resultDialog = this.dialog.open(CommandAlertComponent, {
+      data: {
+        username: this.routerService.snapshot.params.username,
+        product: productName,
+        Client: client,
+        demande :element
+      }
+    });
+    resultDialog.afterClosed().subscribe(
+      result => {
+        console.log(result);
       }
     )
   }
@@ -72,5 +91,6 @@ export class DemandComponent implements OnInit {
       }
     )
   }
+
 
 }

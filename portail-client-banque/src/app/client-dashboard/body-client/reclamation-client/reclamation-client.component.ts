@@ -13,42 +13,38 @@ import { UserService } from 'src/app/user.service';
 })
 export class ReclamationClientComponent implements OnInit {
 
-  userClient: Utilisateur | undefined;
 
-  constructor(private routerService: ActivatedRoute, private userService: UserService) { }
+  panelOpenState = false;
+  dataSource: Reclamation[] = [];
+  open: boolean = false;
 
-  profileForm = new FormGroup({
-    title_reclamation: new FormControl(''),
-    description: new FormControl(''),
-    etat_reclamation: new FormControl(''),
-    date_create: new FormControl(''),
-  });
+  constructor(private userService: UserService, private routerService: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.userService.getUserbyUsername(this.routerService.snapshot.params.username).subscribe(
+    this.getAllReclamtions();
+  }
+
+  getAllReclamtions() {
+
+    this.userService.getReclamationsByUsername(this.routerService.snapshot.params.username).subscribe(
       data => {
-        this.userClient = data;
-      },
-      (error: HttpErrorResponse) => {
+        this.dataSource = data;
+        if (this.dataSource.length == 1 || this.dataSource.length == 2) {
+          this.open = true;
+        }
+      }, (error: HttpErrorResponse) => {
         alert(error.message);
       }
     )
+
   }
 
-  addReclamationClient() {
-    let reclamation = new Reclamation(
-      undefined,
-      this.profileForm.value.title_reclamation,
-      this.profileForm.value.description,
-      "none",
-      new Date(),
-      this.userClient
-    );
-    this.userService.addReclamation(reclamation).subscribe(
+  deleteReclamation(id: any) {
+    this.userService.deleteReclamationById(id).subscribe(
       data => {
-        alert("Added");
-      },
-      (error: HttpErrorResponse) => {
+        alert("Deleted");
+        this.ngOnInit();
+      }, (error: HttpErrorResponse) => {
         alert(error.message);
       }
     )

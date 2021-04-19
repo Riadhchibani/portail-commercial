@@ -33,8 +33,8 @@ public class PublicationController {
         return new ResponseEntity<>(publication1, HttpStatus.OK);
     }
 
-    @DeleteMapping("/deletePub")
-    public void deletePub(Long id) {
+    @DeleteMapping("/deletePub/{id}")
+    public void deletePub(@PathVariable("id") Long id) {
         this.publicationService.dropPub(id);
     }
 

@@ -85,6 +85,13 @@ public class Utilisateur {
     )
     private boolean etat;
 
+    @Column(
+            name = "code",
+            //nullable = false,
+            unique = true
+    )
+    private String code;
+
     @ManyToOne
     private Role role;
 
@@ -97,7 +104,8 @@ public class Utilisateur {
             int tel,
             String username,
             String password,
-            boolean etat
+            boolean etat,
+            String code
     ) {
         this.nom = nom;
         this.prenom = prenom;
@@ -107,6 +115,7 @@ public class Utilisateur {
         this.username = username;
         this.password = password;
         this.etat = etat;
+        this.code = code;
     }
 
 
@@ -211,5 +220,11 @@ public class Utilisateur {
         this.role = role;
     }
 
+    public String getCode() {
+        return code;
+    }
 
+    public void setCode(String code) {
+        this.code = code;
+    }
 }

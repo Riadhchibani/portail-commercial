@@ -18,7 +18,7 @@ export class ClientTableComponent implements OnInit {
 
   @Input() usernameAdminTable: string = '';
 
-  displayedColumns: string[] = ['id', 'nom', 'prenom', 'email', 'age', 'date', 'tel', 'username', 'password', 'role', 'etat', 'edit'];
+  displayedColumns: string[] = ['id', 'nom', 'prenom', 'email', 'age', 'date', 'tel', 'username', 'password', 'code', 'role', 'etat', 'edit'];
 
 
   constructor(public dialog: MatDialog, private routerService: ActivatedRoute, private userService: UserService) { }
@@ -32,7 +32,6 @@ export class ClientTableComponent implements OnInit {
     resultDialog.afterClosed().subscribe(
       result => {
         this.verifUsernamePwd(this.routerService.snapshot.params.username, result, id);
-
       }
     )
 
@@ -66,7 +65,7 @@ export class ClientTableComponent implements OnInit {
   }
 
 
-  mychange(event: MatSlideToggleChange, idClient: number) {
+  change(event: MatSlideToggleChange, idClient: number) {
     let resultDialog = this.dialog.open(PasswordDialogComponent);
     resultDialog.afterClosed().subscribe(
       result => {
@@ -77,7 +76,7 @@ export class ClientTableComponent implements OnInit {
 
   }
 
-  verifUserChecked(username: string, password: string ,event: MatSlideToggleChange, idClient: number) {
+  verifUserChecked(username: string, password: string, event: MatSlideToggleChange, idClient: number) {
     this.userService.findbyNamepwd(username, password)
       .subscribe(
         data => {
