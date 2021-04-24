@@ -55,14 +55,27 @@ public class Publication {
     @OneToOne
     private Utilisateur utilisateur;
 
+    @Column(
+            name = "imageName",
+            nullable = false
+    )
+    private String imageName;
+
+    @Column(
+            name = "testPub",
+            nullable = false
+    )
+    private boolean testPub;
 
 
-    public Publication(String title_pub, String state, Date first_date, Date last_date, String description) {
+    public Publication(String title_pub, String state, Date first_date, Date last_date, String description, String imageName, boolean testPub) {
         this.title_pub = title_pub;
         this.state = state;
         this.first_date = first_date;
         this.last_date = last_date;
         this.description = description;
+        this.imageName = imageName;
+        this.testPub = testPub;
     }
 
     public Publication() {
@@ -122,5 +135,21 @@ public class Publication {
 
     public void setUtilisateur(Utilisateur utilisateur) {
         this.utilisateur = utilisateur;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    public boolean isTestPub() {
+        return testPub;
+    }
+
+    public void setTestPub(boolean testPub) {
+        this.testPub = testPub;
     }
 }

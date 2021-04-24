@@ -23,7 +23,7 @@ import java.util.Collections;
 
 @SpringBootApplication
 //@EnableJpaRepositories(basePackageClasses = UtilisateurRepository.class)
-public class PortailClientApplication  {
+public class PortailClientApplication {
 
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(PortailClientApplication.class);
@@ -31,47 +31,4 @@ public class PortailClientApplication  {
                 .singletonMap("server.port", "8083"));
         app.run(args);
     }
-
-
-
 }
-/**
-
- implements CommandLineRunner
- @Override
- public void run(String... args) throws Exception {
- Utilisateur u = new Utilisateur(
- 4L,
- "len",
- "ben f",
- "sdsdsd@qsd.qsd",
- 19,
- "8/8/2000",
- 65848,
- "uer1",
- "14568",
- "admin"
- );
- UtilisateurService utilisateurController = new UtilisateurService();
- utilisateurController.save(u);
- }
-
- /------------------------------------
- @Bean
- CommandLineRunner commandLineRunner(UtilisateurRepository utilisateurRepository){
- return args -> {
- Utilisateur utilisateur = new Utilisateur(
- "len",
- "ben f",
- "sdsdsd@qsd.qsd",
- 19,
- "8/8/2000",
- 65848,
- "uer1",
- "14568",
- "admin"
- );
- utilisateurRepository.save(utilisateur);
- };
- }
- */

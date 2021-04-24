@@ -1,7 +1,7 @@
 import { environment } from './../environments/environment';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpHeaders, HttpRequest } from '@angular/common/http';
 import { Utilisateur } from './model/utilisateur'
 import { Publication } from './model/Publication';
 import { Reclamation } from './model/Reclamation';
@@ -147,6 +147,29 @@ export class UserService {
 
   public getCommandeByDemandeId(id: number): Observable<Commande> {
     return this.http.get<Commande>(`${this.usersUrl}/getCommandeByDemandeId/${id}`);
+  }
+
+  public upload(selectedFile: File): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+    formData.set('file', selectedFile, selectedFile.name);
+    return this.http.post<any>(`${this.usersUrl}/upload?file=`, formData);
+  }
+
+  public getImage(imageName: string): Observable<any> {
+    let httpOptions = {
+      headers: new HttpHeaders({
+        "responseType": 'blob'
+      })
+    };
+    return this.http.get<any>(`${this.usersUrl}/files/${imageName}`, httpOptions);
+  }
+
+  public deleteImage(imageName: string): Observable<void> {
+    return this.http.delete<void>(`${this.usersUrl}/deleteImage/${imageName}`);
+  }
+
+  public getAllPublicationForClient(): Observable<Publication[]> {
+    return this.http.get<Publication[]>(`${this.usersUrl}/allPublicationForClient`);
   }
 
 }

@@ -22,6 +22,11 @@ public class PublicationController {
         return this.publicationService.getAllPub();
     }
 
+    @GetMapping("/allPublicationForClient")
+    public List<Publication> getAllPublicationForClient() {
+        return this.publicationService.getAllPubForClient();
+    }
+
     @PostMapping("/savePublication")
     public void savePub(@RequestBody Publication publication) {
         this.publicationService.addPub(publication);

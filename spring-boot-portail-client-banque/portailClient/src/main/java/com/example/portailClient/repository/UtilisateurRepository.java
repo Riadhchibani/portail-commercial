@@ -11,4 +11,6 @@ import java.util.Optional;
 
 
 @Repository
-public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> {}
+public interface UtilisateurRepository extends JpaRepository<Utilisateur, Long> {
+    Boolean existsByUsername(String username);
+}

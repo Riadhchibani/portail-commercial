@@ -8,23 +8,24 @@ import { UserService } from 'src/app/user.service';
   styleUrls: ['./publication-client.component.css']
 })
 export class PublicationClientComponent implements OnInit {
+  urlImage: any;
 
 
   constructor(private userService: UserService) { }
   dataSource: Publication[] = [];
   ngOnInit(): void {
     this.getpublicatioin();
+    this.urlImage = `http://localhost:8083/files/`;
   }
 
   getpublicatioin() {
-    this.userService.getAllPublication().subscribe(
+    this.userService.getAllPublicationForClient().subscribe(
       data => {
-        console.log(data);
         this.dataSource = data;
       }
     )
   }
- 
+
 
 
 }

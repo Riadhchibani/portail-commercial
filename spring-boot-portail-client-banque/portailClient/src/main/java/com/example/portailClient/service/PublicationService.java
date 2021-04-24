@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -23,6 +24,21 @@ public class PublicationService {
         this.publicationRepository.findAll().forEach(
                 publication -> {
                     listOfPub.add(publication);
+                }
+        );
+        return listOfPub;
+    }
+
+    public List<Publication> getAllPubForClient() {
+        List<Publication> listOfPub = new ArrayList<Publication>();
+        this.publicationRepository.findAll().forEach(
+                publication -> {
+                    long millis = System.currentTimeMillis();
+                    Date dateCur = new java.sql.Date(millis);
+
+                    if (!publication.getFirst_date().after(dateCur) && !publication.getLast_date().before(dateCur) || publication.getFirst_date().after(dateCur) || publication.getLast_date().after(dateCur)) {
+                        listOfPub.add(publication);
+                    }
                 }
         );
         return listOfPub;

@@ -1,10 +1,13 @@
 <div class="container">
-  <form class="example-form" [formGroup]="profileFormPub">
+  <form class="example-form" [formGroup]="profileFormPub" enctype="multipart/form-data">
+    <!--enctype="multipart/form-data"-->
     <div class="row">
       <div class="col-6 offset-2">
-        <mat-card class="example-card">
-          <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-            alt="Photo of a Shiba Inu">
+        <mat-card id="cardSty" class="example-card">
+          <!--<img mat-card-image src="http://localhost:8083/files/{{imageName}}" alt="Problem">-->
+          <input type="file" (change)="onFileChanged($event)" name="file">
+          <!--<input type="button" (click)="uploadImage()" value="uploadImage">-->
+          <!--<div *ngIf=message>message : {{message}}</div>-->
           <mat-card-subtitle>
             <mat-form-field class="example-form-field">
               <mat-label>intitulé</mat-label>

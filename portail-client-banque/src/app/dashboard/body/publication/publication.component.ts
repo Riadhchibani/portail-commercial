@@ -14,6 +14,7 @@ import { UserService } from 'src/app/user.service';
 export class PublicationComponent implements OnInit {
 
   dataSource: Publication[] = [];
+  urlImage: any;
 
   csvInputChange(fileInputEvent: any) {
     //console.log(fileInputEvent.target.files[0]);
@@ -22,26 +23,57 @@ export class PublicationComponent implements OnInit {
 
   ngOnInit(): void {
     this.getpublicatioin();
+    this.urlImage = `http://localhost:8083/files/`;
+
   }
+
+  a: Date | undefined;
 
   getpublicatioin() {
     this.userService.getAllPublication().subscribe(
       data => {
         this.dataSource = data;
+
+        console.log(data);
       }
     )
   }
 
-  deletePub(id: any) {
+  deletePub(id: any, imageName: any) {
     this.userService.deletePubById(id).subscribe(
       data => {
         alert("Deleted");
-    this.ngOnInit();
+        this.ngOnInit();
 
       }
     ), (error: HttpErrorResponse) => {
       window.location.reload();
     }
+    this.userService.deleteImage(imageName).subscribe(
+      data => {
+
+      }, (error) => {
+        alert(error);
+      }
+    );
   }
+
+  testDate(date: any): boolean {
+
+    let a = new Date(date);
+    if (date <= a.getFullYear) {
+      console.log(a.getFullYear);
+      console.log(a.getMonth);
+      console.log(a.getDay);
+      console.log(date);
+      return true;
+    }
+    console.log(a.getFullYear);
+    console.log(a.getMonth);
+    console.log(a.getDay);
+    console.log(date);
+    return false;
+  }
+  
 
 }
