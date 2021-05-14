@@ -40,7 +40,7 @@ export class ReclamationClientComponent implements OnInit {
   }
 
   deleteReclamation(id: any) {
-    this.userService.deleteReclamationById(id).subscribe(
+    this.userService.deleteReclamationById(id,this.routerService.snapshot.params.username).subscribe(
       data => {
         alert("Deleted");
         this.ngOnInit();

@@ -4,17 +4,19 @@ import { UserService } from '../../user.service';
 import { Utilisateur } from '../../model/utilisateur'
 import { HttpErrorResponse } from '@angular/common/http';
 import { Role } from 'src/app/model/Role';
+import { AuthRequest } from 'src/app/model/AuthRequest';
 
 @Component({
   selector: 'app-left-side',
   templateUrl: './left-side.component.html',
   styleUrls: ['./left-side.component.css']
 })
+
 export class LeftSideComponent implements OnInit {
 
   public user = new Utilisateur();
-  public username: String = '';
-  public password: String = '';
+  public username: string = '';
+  public password: string = '';
   public hide = true;
   public role: Role | undefined;
 
@@ -23,21 +25,30 @@ export class LeftSideComponent implements OnInit {
   ngOnInit(): void { }
 
   onSubmit() {
-    this.userService.findbyNamepwd(this.username, this.password)
-      .subscribe(data => {
-        if (data.role?.roles == "Client" && data.etat == true) {
-          this.router.navigate(['client/dashboard', data.username]);
-        } else if (data.role?.roles == "Admin") {
-          this.router.navigate(['dashboard', data.username]);
-        } else {
-          this.router.navigate(['NotFoundError']);
-        }
-      },
-        (error: HttpErrorResponse) => {
-          //alert(error.message);
-          window.location.reload();
-        }
-      )
+    let authRequest = new AuthRequest(this.username, this.password);
+    this.userService.generateToken(authRequest).subscribe(
+      dataToken => {
+        localStorage.setItem(this.username, dataToken);
+        this.userService.findbyNamepwd(this.username, this.password)
+          .subscribe(data1 => {
+            this.user = data1;
+            if (data1.role?.roles == "Client" && data1.etat == true) {
+              this.router.navigate(['client/dashboard', data1.username]);
+            } else if (data1.role?.roles == "Admin") {
+              this.router.navigate(['admin/dashboard', data1.username]);
+            } else {
+              this.router.navigate(['NotFoundError']);
+            }
+          },
+            (error: HttpErrorResponse) => {
+              alert(error.message);
+              //window.location.reload();
+            }
+          )
+      }
+    );
+
+
   }
 
 }

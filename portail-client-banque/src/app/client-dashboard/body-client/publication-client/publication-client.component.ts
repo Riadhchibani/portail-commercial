@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Publication } from 'src/app/model/Publication';
 import { UserService } from 'src/app/user.service';
 
@@ -11,7 +12,7 @@ export class PublicationClientComponent implements OnInit {
   urlImage: any;
 
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private routerService: ActivatedRoute) { }
   dataSource: Publication[] = [];
   ngOnInit(): void {
     this.getpublicatioin();
@@ -19,7 +20,7 @@ export class PublicationClientComponent implements OnInit {
   }
 
   getpublicatioin() {
-    this.userService.getAllPublicationForClient().subscribe(
+    this.userService.getAllPublicationForClient(this.routerService.snapshot.params.username).subscribe(
       data => {
         this.dataSource = data;
       }

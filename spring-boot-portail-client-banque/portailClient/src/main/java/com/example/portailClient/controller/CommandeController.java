@@ -37,12 +37,17 @@ public class CommandeController {
             @PathVariable("id") Long id,
             @PathVariable("accept") boolean accept
     ) {
-        Commande commande = this.commandeService.setAcceptation(id,accept);
+        Commande commande = this.commandeService.setAcceptation(id, accept);
         return commande;
     }
 
     @GetMapping("/getCommandeByDemandeId/{id}")
-    public Commande getCommande(@PathVariable("id") Long id){
+    public Commande getCommande(@PathVariable("id") Long id) {
         return this.commandeService.getCommandeByDemandeId(id);
+    }
+
+    @DeleteMapping("deleteCommand/{idCommand}")
+    public void deleteCommand(@PathVariable("idCommand") Long idCommand) {
+        this.commandeService.deleteCommandById(idCommand);
     }
 }

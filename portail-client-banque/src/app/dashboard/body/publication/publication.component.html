@@ -3,7 +3,7 @@
     <div class="col-6" *ngFor="let element of dataSource">
       <div class="space" >
         <mat-card class="example-card">
-          <img mat-card-image src="{{urlImage}}{{element.imageName}}" width="1000px" height="200px" alt="Problem">
+          <img mat-card-image src="http://localhost:8083/files/{{element.imageName}}" width="1000px" height="200px" alt="Problem">
           <mat-card-title>{{element.title_pub}}</mat-card-title>
           <mat-card-subtitle>{{element.first_date}} à {{element.last_date}}</mat-card-subtitle>
           <mat-card-content>

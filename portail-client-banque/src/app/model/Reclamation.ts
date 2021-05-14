@@ -8,7 +8,8 @@ export class Reclamation {
         public description?: string,
         public etat_reclamation?: string,
         public date?: Date,
-        public utilisateur?:Utilisateur
+        public utilisateur?:Utilisateur,
+        public reponse?:string
     ) {
 
     }

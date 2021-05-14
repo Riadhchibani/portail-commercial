@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/user.service';
 
 @Component({
@@ -9,14 +10,15 @@ import { UserService } from 'src/app/user.service';
 export class NavbarClientComponent implements OnInit {
 
   @Input() usernameOutput: string = '';
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private routerService: ActivatedRoute, private router: Router) { }
 
   user: String = "client";
   ngOnInit(): void {
     this.user = this.usernameOutput;
   }
-  take(value: any) {
-    console.log(value);
+  take() {
+    localStorage.removeItem(this.routerService.snapshot.params.username);
+    this.router.navigate(['Login']);
   }
 
 }

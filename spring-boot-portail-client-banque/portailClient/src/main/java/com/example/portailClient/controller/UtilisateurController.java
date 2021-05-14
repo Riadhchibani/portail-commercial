@@ -1,10 +1,14 @@
 package com.example.portailClient.controller;
 
+import com.example.portailClient.model.AuthRequest;
 import com.example.portailClient.model.Utilisateur;
 import com.example.portailClient.service.UtilisateurService;
+import com.example.portailClient.utilJwt.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,8 +22,11 @@ public class UtilisateurController {
 
     @Autowired
     private UtilisateurService utilisateurService;
+    @Autowired
+    private AuthenticationManager authenticationManager;
+    @Autowired
+    private JwtUtil jwtUtil;
 
-    
 
     @GetMapping("login/{username}/{password}")
     public Utilisateur login(@PathVariable("username") String username, @PathVariable("password") String password) {
@@ -67,8 +74,20 @@ public class UtilisateurController {
     }
 
     @GetMapping("/testUsername/{variable}")
-    public boolean testUsername(@PathVariable("variable") String token){
+    public boolean testUsername(@PathVariable("variable") String token) {
         return this.utilisateurService.testUsernameToken(token);
+    }
+
+    @PostMapping("/authenticate")
+    public String generateToken(@RequestBody AuthRequest authRequest) throws Exception {
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(authRequest.getUserName(), authRequest.getPassword())
+            );
+        } catch (Exception ex) {
+            throw new Exception("inavalid username/password");
+        }
+        return jwtUtil.generateToken(authRequest.getUserName());
     }
 
 }

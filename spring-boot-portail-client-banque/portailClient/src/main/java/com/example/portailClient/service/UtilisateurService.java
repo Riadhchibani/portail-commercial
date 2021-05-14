@@ -5,6 +5,9 @@ import com.example.portailClient.model.Utilisateur;
 import com.example.portailClient.repository.UtilisateurRepository;
 import com.fasterxml.classmate.util.ConcurrentTypeCache;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,7 +18,7 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collector;
 
 @Service
-public class UtilisateurService {
+public class UtilisateurService implements UserDetailsService {
 
 
     private UtilisateurRepository utilisateurRepository;
@@ -50,7 +53,7 @@ public class UtilisateurService {
     public String crypUsername(String str) {
         char[] chars = str.toCharArray();
         char[] res = new char[str.length()];
-        int i=0;
+        int i = 0;
         for (char c : chars) {
             c += 6;
             res[i] = c;
@@ -97,4 +100,9 @@ public class UtilisateurService {
         return false;
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Utilisateur utilisateur = getUserByUsername(username);
+        return new org.springframework.security.core.userdetails.User(utilisateur.getUsername(), utilisateur.getPassword(), new ArrayList<>());
+    }
 }

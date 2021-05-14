@@ -67,9 +67,10 @@ export class EditUserComponent implements OnInit {
 
 
   getUsersById(id: number) {
-    this.userService.findById(id).subscribe(
+    this.userService.findById(id, this.routerService.snapshot.params.usernameAdmin).subscribe(
       data => {
         this.localData = data;
+        console.log(data);
         this.dataTableUser.push(data);
       },
       (error: HttpErrorResponse) => {
@@ -122,7 +123,7 @@ export class EditUserComponent implements OnInit {
 
 
   update(user: Utilisateur) {
-    this.userService.updateUser(user)
+    this.userService.updateUser(user, this.routerService.snapshot.params.usernameAdmin)
       .subscribe(
         data => {
           alert("confirm");

@@ -37,7 +37,7 @@ export class AddDemandComponent implements OnInit {
       undefined
     );
     if (this.testUser == false) {
-      this.userService.addDemandClient(demand).subscribe(
+      this.userService.addDemandClient(demand,this.routerService.snapshot.params.username).subscribe(
         date => {
           alert("Added");
         },

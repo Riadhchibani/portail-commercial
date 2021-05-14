@@ -41,7 +41,7 @@ export class ClientTableComponent implements OnInit {
     this.userService.findbyNamepwd(username, password)
       .subscribe(
         data => {
-          this.userService.deleteById(id).subscribe(
+          this.userService.deleteById(id, this.routerService.snapshot.params.username).subscribe(
             data => {
               this.getUsers();
             },
@@ -57,7 +57,7 @@ export class ClientTableComponent implements OnInit {
   }
 
   getUsers() {
-    this.userService.findAll().subscribe(
+    this.userService.findAll(this.routerService.snapshot.params.username).subscribe(
       data => {
         this.dataSource = data;
       }
@@ -80,7 +80,7 @@ export class ClientTableComponent implements OnInit {
     this.userService.findbyNamepwd(username, password)
       .subscribe(
         data => {
-          this.userService.changeStateOfClient(idClient, event.checked).subscribe(
+          this.userService.changeStateOfClient(idClient, event.checked, this.routerService.snapshot.params.username).subscribe(
             data => {
             },
             (error: HttpErrorResponse) => {

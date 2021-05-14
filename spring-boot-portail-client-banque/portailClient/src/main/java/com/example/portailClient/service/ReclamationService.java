@@ -52,4 +52,21 @@ public class ReclamationService {
                 ).collect(Collectors.toList());
         return reclamations;
     }
+
+    public void addResponse(Long idReclamation, String response) {
+        List<Reclamation> reclamationList = getAllReclamation();
+        Reclamation reclamationWithResponse = reclamationList.stream()
+                .filter(
+                        reclamation -> {
+                            if (reclamation.getId_reclamation() == idReclamation) {
+                                return true;
+                            } else return false;
+                        }
+                )
+                .findAny()
+                .get();
+        reclamationWithResponse.setReponse(response);
+        this.reclamationRepository.save(reclamationWithResponse);
+    }
+
 }

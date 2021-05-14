@@ -38,7 +38,7 @@ export class AddPublicationComponent implements OnInit {
   addPublication() {
 
 
-    this.userService.upload(this.upFile).subscribe(
+    this.userService.upload(this.upFile, this.routerService.snapshot.params.username).subscribe(
       data => {
 
       }, (error) => {
@@ -58,7 +58,7 @@ export class AddPublicationComponent implements OnInit {
       this.user,
       this.upFile.name
     );
-    this.userService.addPublication(publication).subscribe(
+    this.userService.addPublication(publication, this.routerService.snapshot.params.username).subscribe(
       data => {
         alert("added");
       }, (error) => {

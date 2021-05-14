@@ -43,7 +43,7 @@ export class AddReclamationComponent implements OnInit {
       new Date(),
       this.userClient
     );
-    this.userService.addReclamation(reclamation).subscribe(
+    this.userService.addReclamation(reclamation, this.routerService.snapshot.params.username).subscribe(
       data => {
         alert("Added");
       },

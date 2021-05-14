@@ -30,7 +30,7 @@ export class DemandClientComponent implements OnInit {
   }
 
   deleteDemand(id: any) {
-    this.userService.deleteDemand(id).subscribe(
+    this.userService.deleteDemand(id, this.routerService.snapshot.params.username).subscribe(
       data => {
         alert("Deleted");
       }, (error: HttpErrorResponse) => {

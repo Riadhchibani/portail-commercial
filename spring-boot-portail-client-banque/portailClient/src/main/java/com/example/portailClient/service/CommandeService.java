@@ -65,4 +65,8 @@ public class CommandeService {
                 .get();
         return commande;
     }
+
+    public void deleteCommandById(Long idCommand) {
+        this.commandeRepository.deleteById(idCommand);
+    }
 }

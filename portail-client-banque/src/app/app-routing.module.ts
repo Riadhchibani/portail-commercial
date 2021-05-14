@@ -6,6 +6,7 @@ import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component'
 import { LoginComponent } from './login/login.component';
+import { AuthClientGuard } from './auth-client.guard';
 
 
 
@@ -13,9 +14,9 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   { path: '', redirectTo: 'Login', pathMatch: 'full' },
   { path: 'Login', component: LoginComponent },
-  { path: 'dashboard/:username', component: DashboardComponent, canActivate: [AccesGuard]}, //data: { roles: 7 } 
-  { path: 'editUser/user/:userId/admin/:usernameAdmin', component: EditUserComponent, canActivate: [AccesGuard] },
-  { path: 'client/dashboard/:username', component: ClientDashboardComponent ,canActivate: [AccesGuard]},
+  { path: 'admin/dashboard/:username', component: DashboardComponent, data: { roleUser: "Admin" }, canActivate: [AccesGuard] },
+  { path: 'editUser/user/:userId/admin/:usernameAdmin', component: EditUserComponent },
+  { path: 'client/dashboard/:username', component: ClientDashboardComponent, canActivate: [AuthClientGuard] },
   { path: 'NotFoundError', component: NotFoundComponent },
   { path: '**', redirectTo: 'NotFoundError' }
 ];

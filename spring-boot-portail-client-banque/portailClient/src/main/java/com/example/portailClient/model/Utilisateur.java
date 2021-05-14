@@ -123,6 +123,12 @@ public class Utilisateur {
 
     }
 
+    public Utilisateur(Long id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
+
     public String getUsername() {
         return username;
     }

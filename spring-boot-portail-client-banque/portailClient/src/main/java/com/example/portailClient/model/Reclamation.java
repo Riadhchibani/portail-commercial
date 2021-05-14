@@ -44,16 +44,22 @@ public class Reclamation {
             nullable = false
     )
     private Date date;
+    @Column(
+            name = "reponse"
+    )
+    private String reponse;
+
 
     @OneToOne
     private Utilisateur utilisateur;
 
-    public Reclamation(Long id_reclamation, String description, String etat_reclamation, Date date, String title_reclamation) {
+    public Reclamation(Long id_reclamation, String description, String etat_reclamation, Date date, String title_reclamation, String reponse) {
         this.id_reclamation = id_reclamation;
         this.description = description;
         this.etat_reclamation = etat_reclamation;
         this.date = date;
         this.title_reclamation = title_reclamation;
+        this.reponse = reponse;
     }
 
     public Reclamation() {
@@ -105,5 +111,13 @@ public class Reclamation {
 
     public void setTitle_reclamation(String title_reclamation) {
         this.title_reclamation = title_reclamation;
+    }
+
+    public String getReponse() {
+        return reponse;
+    }
+
+    public void setReponse(String reponse) {
+        this.reponse = reponse;
     }
 }

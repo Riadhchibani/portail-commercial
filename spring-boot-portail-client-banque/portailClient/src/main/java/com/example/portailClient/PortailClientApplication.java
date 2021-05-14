@@ -5,12 +5,16 @@ import com.example.portailClient.model.Utilisateur;
 import com.example.portailClient.repository.UtilisateurRepository;
 import com.example.portailClient.service.UtilisateurService;
 import org.apache.coyote.http11.AbstractHttp11Protocol;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.embedded.tomcat.TomcatConnectorCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -23,7 +27,7 @@ import java.util.Collections;
 
 @SpringBootApplication
 //@EnableJpaRepositories(basePackageClasses = UtilisateurRepository.class)
-public class PortailClientApplication {
+public class PortailClientApplication  {
 
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(PortailClientApplication.class);
@@ -31,4 +35,5 @@ public class PortailClientApplication {
                 .singletonMap("server.port", "8083"));
         app.run(args);
     }
+
 }

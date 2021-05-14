@@ -5,6 +5,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { Utilisateur } from 'src/app/model/utilisateur';
 import { UserService } from 'src/app/user.service';
 import { Role } from 'src/app/model/Role';
+import { ActivatedRoute } from '@angular/router';
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -29,7 +30,7 @@ export class AddUserComponent {
   hide = true;
   matcher = new MyErrorStateMatcher();
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private routerService: ActivatedRoute) { }
 
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -58,7 +59,7 @@ export class AddUserComponent {
   }
 
   addUser(user: Utilisateur) {
-   this.userService.save(user).subscribe(
+   this.userService.save(user,this.routerService.snapshot.params.username).subscribe(
       data => {
         alert('Added');
       },

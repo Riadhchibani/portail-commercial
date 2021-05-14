@@ -35,7 +35,7 @@ export class DemandComponent implements OnInit {
   }
 
   getAllDemands() {
-    this.userService.findAllDemand().subscribe(
+    this.userService.findAllDemand(this.routerService.snapshot.params.username).subscribe(
       data => {
         this.dataSource = data;
       }, (error: HttpErrorResponse) => {
@@ -50,18 +50,18 @@ export class DemandComponent implements OnInit {
         username: this.routerService.snapshot.params.username,
         product: productName,
         Client: client,
-        demande :element
+        demande: element
       }
     });
     resultDialog.afterClosed().subscribe(
       result => {
-        console.log(result);
+        console.log("here !" + result);
       }
     )
   }
 
   getAllDemandsByAdminId(id?: number) {
-    this.userService.getDemandsByAdminId(id).subscribe(
+    this.userService.getDemandsByAdminId(this.routerService.snapshot.params.username, id).subscribe(
       data => {
         this.dataSourceInbox = data;
       }, (error) => {
@@ -71,7 +71,7 @@ export class DemandComponent implements OnInit {
   }
 
   addToAdmin(id: any) {
-    this.userService.addAdminDemand(id, this.admin).subscribe(
+    this.userService.addAdminDemand(id, this.routerService.snapshot.params.username, this.admin).subscribe(
       data => {
         alert("Added");
         this.ngOnInit();
@@ -83,7 +83,7 @@ export class DemandComponent implements OnInit {
   }
 
   removeDemand(id: any) {
-    this.userService.updateUserDemand(id).subscribe(
+    this.userService.updateUserDemand(id, this.routerService.snapshot.params.username).subscribe(
       data => {
         this.ngOnInit();
       }, (error) => {

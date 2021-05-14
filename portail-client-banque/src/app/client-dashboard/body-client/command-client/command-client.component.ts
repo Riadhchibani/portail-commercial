@@ -37,7 +37,7 @@ export class CommandClientComponent implements OnInit {
 
 
   change(event: MatSlideToggleChange, idClient: any) {
-    this.userService.setAcceptionValue(idClient, event.checked).subscribe(
+    this.userService.setAcceptionValue(idClient, event.checked, this.routerService.snapshot.params.username).subscribe(
       data => {
         alert("accepted");
       },

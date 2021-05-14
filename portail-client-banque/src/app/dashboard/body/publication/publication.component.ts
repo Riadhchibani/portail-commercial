@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Publication } from 'src/app/model/Publication';
 import { UserService } from 'src/app/user.service';
 
@@ -16,10 +17,8 @@ export class PublicationComponent implements OnInit {
   dataSource: Publication[] = [];
   urlImage: any;
 
-  csvInputChange(fileInputEvent: any) {
-    //console.log(fileInputEvent.target.files[0]);
-  }
-  constructor(private userService: UserService) { }
+
+  constructor(private userService: UserService, private routerService: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getpublicatioin();
@@ -30,17 +29,15 @@ export class PublicationComponent implements OnInit {
   a: Date | undefined;
 
   getpublicatioin() {
-    this.userService.getAllPublication().subscribe(
+    this.userService.getAllPublication(this.routerService.snapshot.params.username).subscribe(
       data => {
         this.dataSource = data;
-
-        console.log(data);
       }
     )
   }
 
   deletePub(id: any, imageName: any) {
-    this.userService.deletePubById(id).subscribe(
+    this.userService.deletePubById(id, this.routerService.snapshot.params.username).subscribe(
       data => {
         alert("Deleted");
         this.ngOnInit();
@@ -49,7 +46,7 @@ export class PublicationComponent implements OnInit {
     ), (error: HttpErrorResponse) => {
       window.location.reload();
     }
-    this.userService.deleteImage(imageName).subscribe(
+    this.userService.deleteImage(imageName, this.routerService.snapshot.params.username).subscribe(
       data => {
 
       }, (error) => {
@@ -74,6 +71,6 @@ export class PublicationComponent implements OnInit {
     console.log(date);
     return false;
   }
-  
+
 
 }

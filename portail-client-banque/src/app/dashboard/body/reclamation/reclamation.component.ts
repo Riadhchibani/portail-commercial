@@ -3,6 +3,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Reclamation } from 'src/app/model/Reclamation';
 import { UserService } from 'src/app/user.service';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-reclamation',
@@ -13,27 +15,38 @@ export class ReclamationComponent implements OnInit {
 
   panelOpenState = false;
   dataSource: Reclamation[] = [];
-  userClient: string | undefined;
   open: boolean = false;
+  response: string = '';
 
-  constructor(private userService: UserService) { }
+
+  profileFormPub = new FormGroup({
+    responseFrom: new FormControl(''),
+  });
+
+  constructor(private userService: UserService, private routerService: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getAllReclamtions();
   }
 
-  getClient() {
-    this.dataSource.forEach(element => {
-      this.userClient = element.utilisateur?.username;
-    });
+ 
+
+  addResponse(id: any) {
+    this.userService.addResponse(id, this.response, this.routerService.snapshot.params.username).subscribe(
+      data => {
+       alert(data);
+      }, (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+    
   }
 
   getAllReclamtions() {
 
-    this.userService.getAllReclamation().subscribe(
+    this.userService.getAllReclamation(this.routerService.snapshot.params.username).subscribe(
       data => {
         this.dataSource = data;
-        this.getClient();
         if (this.dataSource.length == 1 || this.dataSource.length == 2) {
           this.open = true;
         }
@@ -44,7 +57,7 @@ export class ReclamationComponent implements OnInit {
 
   }
   deleteReclamation(id: any) {
-    this.userService.deleteReclamationById(id).subscribe(
+    this.userService.deleteReclamationById(id, this.routerService.snapshot.params.username).subscribe(
       data => {
         alert("Deleted");
         this.ngOnInit();

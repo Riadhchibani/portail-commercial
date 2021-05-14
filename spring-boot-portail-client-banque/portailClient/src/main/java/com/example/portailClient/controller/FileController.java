@@ -28,7 +28,7 @@ public class FileController {
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
         String message = "";
         try {
-            storageService.uploadToLocalFileSystem(file,file.getOriginalFilename());
+            storageService.uploadToLocalFileSystem(file, file.getOriginalFilename());
 
 
             message = "Uploaded the file successfully: " + file.getOriginalFilename();

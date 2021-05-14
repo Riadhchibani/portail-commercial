@@ -6,6 +6,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Commande } from 'src/app/model/Commande';
 import { UserService } from 'src/app/user.service';
 import { DemandComponent } from '../demand.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-command-alert',
@@ -22,8 +23,9 @@ export class CommandAlertComponent implements OnInit {
   prix_res: number | undefined;
   desc_res: string | undefined;
   test = false;
+  valPassword: string = '';
 
-  constructor(private userService: UserService, public dialogRef: MatDialogRef<DemandComponent>,
+  constructor(private routerService: ActivatedRoute, private userService: UserService, public dialogRef: MatDialogRef<DemandComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   profileForm = new FormGroup({
@@ -33,27 +35,28 @@ export class CommandAlertComponent implements OnInit {
 
 
 
+
+
   ngOnInit(): void {
-    this.userService.getCommandeByDemandeId(this.data.demande.id_demande).subscribe(
+
+    this.userService.getCommandeByDemandeId(this.data.demande.id_demande, this.data.username).subscribe(
       data => {
-        console.log(data);
         this.commandeTest = data;
         this.testAcceptaion = this.commandeTest.acceptation;
         this.test = true;
         this.prix_res = this.commandeTest.prix;
         this.desc_res = this.commandeTest.description;
       }, (error) => {
-        //alert(error.message);
       }
     )
-    this.userService.getUserbyUsername(this.data.username).subscribe(
+    this.userService.getUserbyUsername(this.data.username, this.data.username).subscribe(
       data => {
         this.userAdmin = data;
       }, (error) => {
         alert(error.message);
       }
     )
-    this.userService.getUserbyUsername(this.data.Client).subscribe(
+    this.userService.getUserbyUsername(this.data.Client, this.data.username).subscribe(
       data => {
         this.userCleint = data;
       }, (error) => {
@@ -77,9 +80,8 @@ export class CommandAlertComponent implements OnInit {
     )
 
 
-    this.userService.addCommande(commande).subscribe(
+    this.userService.addCommande(commande, this.data.username).subscribe(
       data => {
-        alert("added");
         this.commande = data;
       }, (error) => {
         alert(error.message);
@@ -87,7 +89,16 @@ export class CommandAlertComponent implements OnInit {
     )
 
   }
+  deleteCommandByID() {
 
+    this.userService.deleteCommand(this.commandeTest.id_commande, this.data.username).subscribe(
+      data => {
+        alert("deleted");
+      }, (err) => {
+        alert(err);
+      }
+    );
+  }
 
 
 }
