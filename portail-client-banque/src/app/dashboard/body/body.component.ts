@@ -41,12 +41,10 @@ export class BodyComponent implements OnChanges {
     ['itemOfCharts', false],
     ['itemOfClient', false],
     ['itemOfProduction', false],
-    ['itemOfAddProduction', false],
     ['itemOfBill', false],
     ['itemOfAddBill', false],
     ['itemOfReclamation', false],
     ['itemOfProduct', false],
-    ['itemOfAddProduct', false],
     ['itemOfDemand', false]
   ]
   );

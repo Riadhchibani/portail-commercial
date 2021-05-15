@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface ImFamillesRepository extends JpaRepository<ImFamilles,Long> {
 
-    @Query("")
+    @Query("SELECT new com.example.portailClient.model.ObjectResponseData(f.imFamillesId, f.libelle,   sf.imSousFamillesId, sf.libelle, sf.imFamillesId, sf.vendable, sf.classeNgpLibre, sf.abr, a) FROM ImArticle a, ImSousFamilles sf, ImFamilles f WHERE sf.imSousFamillesId = a.imSousFamillesId and f.imFamillesId =  sf.imSousFamillesId order by sf.imSousFamillesId")
     public List<ObjectResponseData> getData();
 }

@@ -41,7 +41,6 @@ import { MatMenuModule } from '@angular/material/menu';
 import { SidebarClientComponent } from './client-dashboard/sidebar-client/sidebar-client.component';
 import { BodyClientComponent } from './client-dashboard/body-client/body-client.component';
 import { ProduitComponent } from './dashboard/body/produit/produit.component';
-import { AddProduitComponent } from './dashboard/body/add-produit/add-produit.component';
 import { EditUserComponent } from './dashboard/edit-user/edit-user.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -85,7 +84,6 @@ import { CommandAlertComponent } from './dashboard/demand/command-alert/command-
     SidebarClientComponent,
     BodyClientComponent,
     ProduitComponent,
-    AddProduitComponent,
     EditUserComponent,
     NotFoundComponent,
     PasswordDialogComponent,

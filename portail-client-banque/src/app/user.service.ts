@@ -8,6 +8,7 @@ import { Reclamation } from './model/Reclamation';
 import { Demande } from './model/Demande';
 import { Commande } from './model/Commande';
 import { ActivatedRoute } from '@angular/router';
+import { ObjectResponseData } from './model/ObjectResponseData';
 
 
 @Injectable({
@@ -283,5 +284,11 @@ export class UserService {
     let strToken = 'Bearer ' + token;
     const headers = new HttpHeaders().set('Authorization', strToken);
     return this.http.put<void>(`${this.usersUrl}/addResponse/${idRec}/${message}`, null,{ headers });
+  }
+  
+  public getData(token: string): Observable<ObjectResponseData[]> {
+    let strToken = 'Bearer ' + token;
+    const headers = new HttpHeaders().set('Authorization', strToken);
+    return this.http.get<ObjectResponseData[]>(`${this.usersUrl}/allFamilleData`, { headers, responseType: 'text' as 'json' })
   }
 }
