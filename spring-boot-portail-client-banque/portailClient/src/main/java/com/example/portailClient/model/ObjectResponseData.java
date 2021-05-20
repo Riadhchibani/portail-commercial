@@ -10,13 +10,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class ObjectResponseData {
-    private Long im_familles_id;
+    /*private Long im_familles_id;
     private String libelle;
     private Long im_sous_familles_id;
     private String sf_libelle;
     private Long sf_im_familles_id;
     private Boolean vendable;
     private Boolean classe_ngp_libre;
-    private String abr;
+    private String abr;*/
     private ImArticle imArticle;
 }

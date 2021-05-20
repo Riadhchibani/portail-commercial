@@ -10,19 +10,20 @@
           <!--<div *ngIf=message>message : {{message}}</div>-->
           <mat-card-subtitle>
             <mat-form-field class="example-form-field">
-              <mat-label>intitulé</mat-label>
+              <mat-label>Code de produit</mat-label>
               <input matInput placeholder="" value="" formControlName="title">
+              <input type="submit" class="btn btn-primary"  value="code">
             </mat-form-field>
             <br>
             <!--Date : {{today | date:'shortDate'}}-->
             <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>date de naissance</mat-label>
+              <mat-label>Date de publication</mat-label>
               <input matInput type='date' #myDate formControlName="date" />
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
             <br>
             <mat-form-field class="example-full-width" appearance="fill">
-              <mat-label>date de naissance</mat-label>
+              <mat-label>Date d'annulation</mat-label>
               <input matInput type='date' #myDate formControlName="lastdate" />
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>

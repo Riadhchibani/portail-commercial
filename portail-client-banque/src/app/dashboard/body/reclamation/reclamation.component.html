@@ -1,28 +1,4 @@
-<div class="container" *ngIf="!open">
-  <div class="row">
-    <div class="col-6" *ngFor="let element of dataSource">
-      <div class="space">
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              {{element.title_reclamation}}
-            </mat-panel-title>
-            <mat-panel-description>
-              {{element.date}}
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <p>Client : {{element.utilisateur?.username}}</p>
-          <p>Description : {{element.description}}</p>
-          <p>Reponse : {{element.reponse}}</p>
-          <mat-action-row>
-            <button mat-button color="primary" (click)="deleteReclamation(element.id_reclamation)">Supprimer</button>
-          </mat-action-row>
-        </mat-expansion-panel>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container" *ngIf="open">
+<div class="container">
   <div class="row" id="styitem">
     <div class="col" *ngFor="let element of dataSource">
       <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">

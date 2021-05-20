@@ -15,7 +15,6 @@ export class SidebarComponent implements OnInit {
   itemOfProduction: string = "itemOfProduction";
   itemOfAddProduction: string = "itemOfAddProduction";
   itemOfBill: string = "itemOfBill";
-  itemOfAddBill: string = "itemOfAddBill";
   itemOfReclamation: string = "itemOfReclamation";
   itemOfProduct: string = "itemOfProduct";
   itemOfAddProduct: string = "itemOfAddProduct";

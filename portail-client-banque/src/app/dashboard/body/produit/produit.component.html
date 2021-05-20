@@ -1,57 +1,52 @@
 <div class="container">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-      <!-- ID Column -->
-      <ng-container matColumnDef="im_familles_id">
-        <th mat-header-cell *matHeaderCellDef> im_familles_id </th>
-        <td mat-cell *matCellDef="let element"> {{element.im_familles_id}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="libelle">
-        <th mat-header-cell *matHeaderCellDef> libelle </th>
-        <td mat-cell *matCellDef="let element"> {{element.libelle}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="im_sous_familles_id">
-        <th mat-header-cell *matHeaderCellDef> im_sous_familles_id </th>
-        <td mat-cell *matCellDef="let element"> {{element.im_sous_familles_id}} </td>
-      </ng-container>
-
-
-      <ng-container matColumnDef="sf_libelle">
-        <th mat-header-cell *matHeaderCellDef> sf_libelle </th>
-        <td mat-cell *matCellDef="let element"> {{element.sf_libelle}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="sf_im_familles_id">
-        <th mat-header-cell *matHeaderCellDef> sf_im_familles_id </th>
-        <td mat-cell *matCellDef="let element"> {{element.sf_im_familles_id}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="vendable">
-        <th mat-header-cell *matHeaderCellDef> vendable </th>
-        <td mat-cell *matCellDef="let element"> {{element.vendable}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="classe_ngp_libre">
-        <th mat-header-cell *matHeaderCellDef> classe_ngp_libre </th>
-        <td mat-cell *matCellDef="let element"> {{element.classe_ngp_libre}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="abr">
-        <th mat-header-cell *matHeaderCellDef> abr </th>
-        <td mat-cell *matCellDef="let element"> {{element.abr}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="imArticle">
-        <th mat-header-cell *matHeaderCellDef> imArticle </th>
-        <td mat-cell *matCellDef="let element"> {{element.imArticle}} </td>
-      </ng-container>
-
-      <!-- Name Column -->
-      
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-    </table>
+  <div class="row">
+    <div class="col-6">
+      <input matInput placeholder="" value="" formControlName="code"><br><br>
+      <input type="submit" class="btn btn-primary" (click)="onclick()" value="code de produit">
+    </div>
+    <div class="col-6">
+      <input matInput placeholder="" value="" formControlName="code"><br><br>
+      <input type="submit" class="btn btn-primary" (click)="onclick()" value="Libelle de produit">
+    </div>
   </div>
+</div><br>
+<div class="container">
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> id </th>
+      <td mat-cell *matCellDef="let element"> {{element.imArticleId}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="libelle">
+      <th mat-header-cell *matHeaderCellDef> libelle </th>
+      <td mat-cell *matCellDef="let element"> {{element.libelle}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="date_Creation">
+      <th mat-header-cell *matHeaderCellDef> date Creation </th>
+      <td mat-cell *matCellDef="let element"> {{element.dateCreation}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="prixVente">
+      <th mat-header-cell *matHeaderCellDef> prix Vente </th>
+      <td mat-cell *matCellDef="let element"> {{element.prixVente}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="prixPublic">
+      <th mat-header-cell *matHeaderCellDef> prix Public </th>
+      <td mat-cell *matCellDef="let element"> {{element.prixPublic}} </td>
+    </ng-container>
+
+
+
+    <!-- Name Column -->
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+</div>

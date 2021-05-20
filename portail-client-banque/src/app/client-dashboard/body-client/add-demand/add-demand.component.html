@@ -5,24 +5,34 @@
     </div>
     <div class="row">
       <div class="col-6">
+        <p>Nom de produit : </p>
         <mat-form-field class="example-full-width">
-          <mat-label>Nom de produit</mat-label>
-          <input matInput placeholder="" formControlName="nomproduit" required>
+          <mat-label>Saisir le code de produit</mat-label>
+          <input matInput placeholder="" formControlName="nomproduit" required><br>
+        </mat-form-field><br>
+        <mat-form-field class="example-full-width">
+          <mat-label>Saisir le nom de produit</mat-label>
+          <input matInput placeholder="" formControlName="nomproduit" required><br>
         </mat-form-field>
+        <br>
+        <input type="submit" name="add" class="btn btn-primary" value="doner le nom de produit">
       </div>
       <div class="col-6">
         <mat-form-field appearance="fill">
-            <mat-label>description</mat-label>
-            <textarea matInput value="" formControlName="description" required></textarea>
-          </mat-form-field>
+          <mat-label>description</mat-label>
+          <textarea matInput value="" formControlName="description" required></textarea>
+        </mat-form-field>
       </div>
       <br>
-      <div class="row">
-        <div class="col-4">
-          <input type="submit" name="add" class="btn btn-primary" (click)="addDemand()" value="submit">
-        </div>
-        <div class="col-3">
-          <button type="reset" class="btn btn-default">Reset</button>
+      <div class="container">
+        <br>
+        <div class="row">
+          <div class="col-4">
+            <input type="submit" name="add" class="btn btn-primary" (click)="addDemand()" value="submit">
+          </div>
+          <div class="col-3">
+            <button type="reset" class="btn btn-default">Reset</button>
+          </div>
         </div>
       </div>
     </div>

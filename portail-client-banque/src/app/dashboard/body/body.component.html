@@ -20,6 +20,10 @@
   <app-publication></app-publication>
 </div>
 <!------------------------------------------------------------------------------------------------------------------------>
+<div *ngIf="items.get('itemOfAddProduction')">
+  <app-add-publication></app-add-publication>
+</div>
+<!------------------------------------------------------------------------------------------------------------------------>
 <div *ngIf="items.get('itemOfBill')">
   <app-bill></app-bill>
 </div>
@@ -39,4 +43,3 @@
 <div *ngIf="items.get('itemOfDemand')">
   <app-demand></app-demand>
 </div>
-
