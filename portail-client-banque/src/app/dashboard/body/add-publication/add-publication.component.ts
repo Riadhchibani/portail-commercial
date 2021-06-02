@@ -6,6 +6,8 @@ import { Publication } from 'src/app/model/Publication';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { FileImage } from 'src/app/model/FileImage';
+import { HttpErrorResponse } from '@angular/common/http';
+import { DataResponse } from 'src/app/model/DataResponse';
 
 @Component({
   selector: 'app-add-publication',
@@ -50,7 +52,7 @@ export class AddPublicationComponent implements OnInit {
 
     let publication = new Publication(
       undefined,
-      this.profileFormPub.value.title,
+      this.nomduPro,
       "none",
       this.profileFormPub.value.date,
       this.profileFormPub.value.lastdate,
@@ -75,7 +77,25 @@ export class AddPublicationComponent implements OnInit {
     this.upFile = this.selectedFile = event.target.files[0];
   }
 
+  objs: any[] | undefined;
+  valueOf: any;
+  onSelect(a: any) {
+    this.valueOf = a;
+  }
+
+  getData() {
+    this.userService.getSousFamille(this.routerService.snapshot.params.username).subscribe(
+      data => {
+        this.objs = data;
+        this.objs.push("...");
+      }, (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  }
+
   ngOnInit(): void {
+    this.getData();
 
     this.userService.getUserbyUsername(this.routerService.snapshot.params.username).subscribe(
       data => {
@@ -87,6 +107,27 @@ export class AddPublicationComponent implements OnInit {
 
   }
 
+  dataObj: any[] = [];
+  testProd: boolean = false;
+
+  onclick(productName: any, peo: any) {
+    let res = new DataResponse(this.valueOf, productName, peo);
+    console.log(res);
+    this.userService.getDataArticle(this.routerService.snapshot.params.username, res).subscribe(
+      data => {
+        this.dataObj = data;
+        this.testProd = true;
+      }, (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  }
+  selectedValue: string | undefined;
+  nomduPro: any | undefined;
+
+  pickOb(a: any) {
+    this.nomduPro = a;
+  }
 
 
 }

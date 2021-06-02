@@ -15,6 +15,7 @@ export class BodyClientComponent implements OnInit {
     ['itemOfaddDemand', false],
     ['itemOfdemand', false],
     ['itemOfBill', false],
+    ['itemOfProduct', false],
     ['itemOfReclamation', false],
     ['itemOfaddReclamation', false]
   ]

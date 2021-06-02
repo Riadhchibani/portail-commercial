@@ -5,6 +5,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Demande } from 'src/app/model/Demande';
 import { UserService } from 'src/app/user.service';
+import { DataResponse } from 'src/app/model/DataResponse';
 
 @Component({
   selector: 'app-add-demand',
@@ -12,7 +13,8 @@ import { UserService } from 'src/app/user.service';
   styleUrls: ['./add-demand.component.css']
 })
 export class AddDemandComponent implements OnInit {
-
+  dataSource: any;
+  nomduPro: any | undefined;
   constructor(private routerService: ActivatedRoute, private userService: UserService) { }
 
   profileForm = new FormGroup({
@@ -23,7 +25,11 @@ export class AddDemandComponent implements OnInit {
   testUser: boolean = false;
   userClient: Utilisateur | undefined;
 
-
+  objs: any[] | undefined;
+  valueOf: any;
+  onSelect(a: any) {
+    this.valueOf = a;
+  }
 
   addDemand() {
     let demand = new Demande(
@@ -32,12 +38,12 @@ export class AddDemandComponent implements OnInit {
       new Date(),
       "none",
       this.profileForm.value.description,
-      this.profileForm.value.nomproduit,
+      this.nomduPro,
       this.userClient,
       undefined
     );
     if (this.testUser == false) {
-      this.userService.addDemandClient(demand,this.routerService.snapshot.params.username).subscribe(
+      this.userService.addDemandClient(demand, this.routerService.snapshot.params.username).subscribe(
         date => {
           alert("Added");
         },
@@ -47,10 +53,22 @@ export class AddDemandComponent implements OnInit {
       )
     }
 
+  }
+  selectedValue: string | undefined;
 
+  getData() {
+    this.userService.getSousFamille(this.routerService.snapshot.params.username).subscribe(
+      data => {
+        this.objs = data;
+        this.objs.push("...");
+      }, (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
   }
 
   ngOnInit(): void {
+    this.getData();
     this.userService.getUserbyUsername(this.routerService.snapshot.params.username).subscribe(
       data => {
         this.userClient = data;
@@ -61,6 +79,27 @@ export class AddDemandComponent implements OnInit {
 
       }
     )
+  }
+
+  dataObj: any[] = [];
+
+  testProd: boolean = false;
+
+  onclick(productName: any, peo: any) {
+    let res = new DataResponse(this.valueOf, productName, peo);
+    console.log(res);
+    this.userService.getDataArticle(this.routerService.snapshot.params.username, res).subscribe(
+      data => {
+        this.dataObj = data;
+        this.testProd = true;
+      }, (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    )
+  }
+  
+  pickOb(a: any) {
+    this.nomduPro = a;
   }
 
 }

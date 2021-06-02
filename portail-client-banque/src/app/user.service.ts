@@ -1,3 +1,5 @@
+import { DataResponse } from './model/DataResponse';
+import { ImSousFamilles } from './model/ImSousFamilles';
 import { environment } from './../environments/environment';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -290,5 +292,21 @@ export class UserService {
     let strToken = 'Bearer ' + token;
     const headers = new HttpHeaders().set('Authorization', strToken);
     return this.http.get<ObjectResponseData[]>(`${this.usersUrl}/allFamilleData/${code}`, { headers, responseType: 'text' as 'json' })
+  }
+
+  public getSousFamille(username:string): Observable<ImSousFamilles[]>{
+    let token = localStorage.getItem(username);
+    let strToken = 'Bearer ' + token;
+    const headers = new HttpHeaders().set('Authorization', strToken);
+    return this.http.get<ImSousFamilles[]>(`${this.usersUrl}/getDataSousFamille`, { headers });
+  }
+
+  public getDataArticle(username:string, res:DataResponse): Observable<any> {
+    let token = localStorage.getItem(username);
+    let strToken = 'Bearer ' + token;
+    let headers = new HttpHeaders().set('Authorization', strToken);
+    headers = headers.set('content-type', 'application/json');
+    const body = JSON.stringify(res);
+    return this.http.post(`${this.usersUrl}/getProduct`, body, { headers });
   }
 }

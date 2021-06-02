@@ -53,13 +53,28 @@ public class Reclamation {
     @OneToOne
     private Utilisateur utilisateur;
 
-    public Reclamation(Long id_reclamation, String description, String etat_reclamation, Date date, String title_reclamation, String reponse) {
+    @OneToOne
+    private Utilisateur utilisateur_admin;
+
+    public Reclamation(Long id_reclamation, String title_reclamation, String description, String etat_reclamation, Date date, String reponse, Utilisateur utilisateur) {
         this.id_reclamation = id_reclamation;
+        this.title_reclamation = title_reclamation;
         this.description = description;
         this.etat_reclamation = etat_reclamation;
         this.date = date;
-        this.title_reclamation = title_reclamation;
         this.reponse = reponse;
+        this.utilisateur = utilisateur;
+    }
+
+    public Reclamation(Long id_reclamation, String title_reclamation, String description, String etat_reclamation, Date date, String reponse, Utilisateur utilisateur, Utilisateur utilisateur_admin) {
+        this.id_reclamation = id_reclamation;
+        this.title_reclamation = title_reclamation;
+        this.description = description;
+        this.etat_reclamation = etat_reclamation;
+        this.date = date;
+        this.reponse = reponse;
+        this.utilisateur = utilisateur;
+        this.utilisateur_admin = utilisateur_admin;
     }
 
     public Reclamation() {
@@ -119,5 +134,13 @@ public class Reclamation {
 
     public void setReponse(String reponse) {
         this.reponse = reponse;
+    }
+
+    public Utilisateur getUtilisateur_admin() {
+        return utilisateur_admin;
+    }
+
+    public void setUtilisateur_admin(Utilisateur utilisateur_admin) {
+        this.utilisateur_admin = utilisateur_admin;
     }
 }

@@ -16,6 +16,7 @@ import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @Service
 public class UtilisateurService implements UserDetailsService {
@@ -50,18 +51,6 @@ public class UtilisateurService implements UserDetailsService {
 
     }
 
-    public String crypUsername(String str) {
-        char[] chars = str.toCharArray();
-        char[] res = new char[str.length()];
-        int i = 0;
-        for (char c : chars) {
-            c += 6;
-            res[i] = c;
-            i++;
-        }
-        String ress = res.toString();
-        return ress;
-    }
 
     public void dropUserById(Long id) {
         this.utilisateurRepository.deleteById(id);
@@ -98,6 +87,21 @@ public class UtilisateurService implements UserDetailsService {
     public boolean testUsernameToken(String username) {
 
         return false;
+    }
+
+    public List<String> getEmailsAdmin() {
+        List<String> listOfEmails = new ArrayList<String>();
+        List<Utilisateur> users = getAllUsers()
+                .stream()
+                .filter(userName -> {
+                    if(userName.getRole().getRoles().equals("Admin")){
+                        listOfEmails.add(userName.getEmail());
+                        return true;
+                    }else return false;
+                })
+                .collect(Collectors.toList());
+
+        return listOfEmails;
     }
 
     @Override

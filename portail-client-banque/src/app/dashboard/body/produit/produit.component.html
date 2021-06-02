@@ -1,12 +1,23 @@
 <div class="container">
   <div class="row">
     <div class="col-6">
-      <input matInput placeholder="" value="" formControlName="code"><br><br>
-      <input type="submit" class="btn btn-primary" (click)="onclick()" value="code de produit">
-    </div>
-    <div class="col-6">
-      <input matInput placeholder="" value="" formControlName="code"><br><br>
-      <input type="submit" class="btn btn-primary" (click)="onclick()" value="Libelle de produit">
+      <mat-form-field appearance="fill">
+        <mat-label>sous famille</mat-label>
+        <mat-select [(ngModel)]="selectedValue" name="obj">
+          <mat-option #databox *ngFor="let obj of objs" [value]="obj.imSousFamillesId" (click)="onSelect(databox.value)">
+            {{obj.libelle}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>code</mat-label>
+        <input #box matInput>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Libelle</mat-label>
+        <input #data matInput>
+      </mat-form-field><br>
+      <input type="submit" class="btn btn-primary" (click)="onclick(data.value, box.value)" value="Recherche">
     </div>
   </div>
 </div><br>

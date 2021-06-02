@@ -4,6 +4,9 @@
 <div *ngIf="items.get('itemOfBill')">
   <app-bill-client></app-bill-client>
 </div>
+<div *ngIf="items.get('itemOfProduct')">
+  <app-product-client></app-product-client>
+</div>
 <div *ngIf="items.get('itemOfCommand')">
   <app-command-client></app-command-client>
 </div>

@@ -12,14 +12,18 @@
       <mat-icon id="micon" mat-list-icon>note</mat-icon>
       <h4 mat-line>Factures</h4>
     </mat-list-item>
-    <mat-list-item class="rowList" (click)="addNewItem(itemOfCommand)">
-      <mat-icon id="micon" mat-list-icon>assignment</mat-icon>
-      <h4 mat-line>Commandes</h4>
+    <mat-list-item class="rowList" (click)="addNewItem(itemOfProduct)">
+      <mat-icon id="micon" mat-list-icon>note</mat-icon>
+      <h4 mat-line>Produit</h4>
     </mat-list-item>
     <mat-list-item class="rowList" (click)="addNewItem(itemOfdemand)" (click)="demandState = !demandState">
       <mat-icon id="micon" mat-list-icon>shopping_cart</mat-icon>
       <h4 mat-line>Les demandes</h4>
       <mat-icon id="miconadd" mat-list-icon>add</mat-icon>
+    </mat-list-item>
+    <mat-list-item class="space" (click)="addNewItem(itemOfCommand)" *ngIf="demandState">
+      <mat-icon id="micon" mat-list-icon>assignment</mat-icon>
+      <h4 mat-line>Commandes</h4>
     </mat-list-item>
     <mat-list-item class="space" (click)="addNewItem(itemOfaddDemand)" *ngIf="demandState">
       <mat-icon id="micon" mat-list-icon>add_shopping_cart</mat-icon>

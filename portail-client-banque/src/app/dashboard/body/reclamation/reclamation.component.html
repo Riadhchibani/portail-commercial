@@ -17,9 +17,6 @@
         <p>Reponse : <textarea matInput placeholder="reponse" value="" [(ngModel)]="response" required></textarea></p>
         <br>
         <button mat-button color="primary" (click)="addResponse(element.id_reclamation)">Repondre</button>
-        <mat-action-row>
-          <button mat-button color="primary" (click)="deleteReclamation(element.id_reclamation)">Supprimer</button>
-        </mat-action-row>
       </mat-expansion-panel>
     </div>
   </div>

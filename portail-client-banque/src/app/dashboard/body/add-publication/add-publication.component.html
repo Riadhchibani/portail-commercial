@@ -9,11 +9,36 @@
           <!--<input type="button" (click)="uploadImage()" value="uploadImage">-->
           <!--<div *ngIf=message>message : {{message}}</div>-->
           <mat-card-subtitle>
-            <mat-form-field class="example-form-field">
-              <mat-label>Code de produit</mat-label>
-              <input matInput placeholder="" value="" formControlName="title">
-              <input type="submit" class="btn btn-primary"  value="code">
-            </mat-form-field>
+           
+              <mat-form-field appearance="fill">
+                <mat-label>sous famille</mat-label>
+                <mat-select [(ngModel)]="selectedValue" name="obj">
+                  <mat-option #databox *ngFor="let obj of objs" [value]="obj.imSousFamillesId" (click)="onSelect(databox.value)">
+                    {{obj.libelle}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <br>
+              <mat-form-field class="example-full-width">
+                <mat-label>Saisir le code de produit</mat-label>
+                <input #box matInput placeholder="" formControlName="nomproduit" required><br>
+              </mat-form-field><br>
+              <mat-form-field class="example-full-width">
+                <mat-label>Saisir le nom de produit</mat-label>
+                <input #data matInput placeholder="" formControlName="nomproduit" required><br>
+              </mat-form-field>
+              <br>
+              <mat-form-field appearance="fill" *ngIf="testProd">
+                <mat-label>sous famille</mat-label>
+                <mat-select [(ngModel)]="selectedValue" name="obj">
+                  <mat-option #datab *ngFor="let obj of dataObj" [value]="obj.libelle" (click)="pickOb(datab.value)">
+                    {{obj.libelle}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <br>
+              <input type="button" (click)="onclick(data.value, box.value)"  name="add" class="btn btn-primary" value="doner le nom du produit">
+            
             <br>
             <!--Date : {{today | date:'shortDate'}}-->
             <mat-form-field class="example-full-width" appearance="fill">

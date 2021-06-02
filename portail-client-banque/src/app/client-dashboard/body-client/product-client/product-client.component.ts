@@ -1,37 +1,32 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DataResponse } from 'src/app/model/DataResponse';
-import { ObjectResponseData } from 'src/app/model/ObjectResponseData';
+import { ImArticle } from './../../../model/ImFamilles';
 import { UserService } from 'src/app/user.service';
 
+
 @Component({
-  selector: 'app-produit',
-  templateUrl: './produit.component.html',
-  styleUrls: ['./produit.component.css']
+  selector: 'app-product-client',
+  templateUrl: './product-client.component.html',
+  styleUrls: ['./product-client.component.css']
 })
-export class ProduitComponent implements OnInit {
+export class ProductClientComponent implements OnInit {
 
-  dataSource: ObjectResponseData[] = [];
+  dataSource: ImArticle[] = [];
 
-  displayedColumns: string[] = ['id', 'libelle', 'date_Creation', 'prixVente', 'prixPublic'];
+  displayedColumns: string[] = ['id', 'libelle'];
 
 
   constructor(private routerService: ActivatedRoute, private userService: UserService) { }
 
+  objs: any[] | undefined;
 
   profileForm = new FormGroup({
     codea: new FormControl(''),
   });
-
   selectedValue: string | undefined;
-
-  valueOf: any;
-  onSelect(a: any) {
-    this.valueOf = a;
-  }
-  objs: any[] | undefined;
 
   ngOnInit(): void {
     this.userService.getSousFamille(this.routerService.snapshot.params.username).subscribe(
@@ -43,7 +38,13 @@ export class ProduitComponent implements OnInit {
       }
     )
   }
-  
+
+  valueOf: any;
+  onSelect(a: any) {
+    this.valueOf = a;
+  }
+
+
   onclick(productName: any, peo: any) {
     let res = new DataResponse(this.valueOf, productName, peo);
     console.log(res);
@@ -51,17 +52,6 @@ export class ProduitComponent implements OnInit {
       data => {
         this.dataSource = data;
         console.log("data", data);
-      }, (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    )
-  }
-
-  getData() {
-    this.userService.getData(this.routerService.snapshot.params.username, 'ds').subscribe(
-      data => {
-        console.log(this.routerService.snapshot.params.username);
-        //this.dataSource = data;
       }, (error: HttpErrorResponse) => {
         alert(error.message);
       }

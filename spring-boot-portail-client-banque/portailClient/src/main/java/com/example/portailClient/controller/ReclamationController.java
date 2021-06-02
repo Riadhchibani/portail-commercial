@@ -23,6 +23,7 @@ public class ReclamationController {
 
     @PostMapping("/addReclamation")
     public void addReclamations(@RequestBody Reclamation reclamation) {
+
         this.reclamationService.addReclamation(reclamation);
     }
 
@@ -36,8 +37,8 @@ public class ReclamationController {
         return this.reclamationService.getAllReclamationByUsername(username);
     }
 
-    @PutMapping("/addResponse/{idReclamation}/{response}")
-    public void updateUserState(@PathVariable("idReclamation") Long idReclamation, @PathVariable("response") String response) {
-        this.reclamationService.addResponse(idReclamation, response);
+    @PutMapping("/addResponse/{idReclamation}/{response}/{username}")
+    public void updateUserState(@PathVariable("idReclamation") Long idReclamation, @PathVariable("response") String response, @PathVariable("username") String username) {
+        this.reclamationService.addResponse(idReclamation, response, username);
     }
 }
