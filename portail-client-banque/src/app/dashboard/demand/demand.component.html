@@ -28,7 +28,7 @@
       <ng-template matStepLabel>Boîte de demande</ng-template>
       <div class="container">
         <div class="row" *ngFor="let element of dataSourceInbox">
-          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" style="width: 150%;">
             <mat-expansion-panel-header>
               <mat-panel-title>
                 produit : {{element.produitName}}
@@ -41,7 +41,7 @@
             <p>Client : {{element.utilisateurClient?.username}}</p>
             <p>Description : {{element.description}}</p>
             <mat-action-row>
-              <button mat-button color="primary" (click)="removeDemand(element.id_demande)">Supprimer</button>
+              <button mat-button color="primary" (click)="removeDemand(element.id_demande)">Refuser</button>
               <button mat-button color="primary" (click)="reponseDemand(element.produitName,element.utilisateurClient?.username,element)">Commande</button>
             </mat-action-row>
           </mat-expansion-panel><br>

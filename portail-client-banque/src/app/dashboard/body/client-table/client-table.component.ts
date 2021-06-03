@@ -2,6 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Utilisateur } from 'src/app/model/utilisateur';
 import { UserService } from 'src/app/user.service';
@@ -21,7 +22,7 @@ export class ClientTableComponent implements OnInit {
   displayedColumns: string[] = ['id', 'nom', 'prenom', 'email', 'age', 'date', 'tel', 'username', 'password', 'code', 'role', 'etat', 'edit'];
 
 
-  constructor(public dialog: MatDialog, private routerService: ActivatedRoute, private userService: UserService) { }
+  constructor(private _snackBar: MatSnackBar, public dialog: MatDialog, private routerService: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit(): void {
     this.getUsers();
@@ -44,9 +45,14 @@ export class ClientTableComponent implements OnInit {
           this.userService.deleteById(id, this.routerService.snapshot.params.username).subscribe(
             data => {
               this.getUsers();
+              this._snackBar.open("supprimée",'',{
+                duration: 1000
+              });
             },
             (error: HttpErrorResponse) => {
-              alert(error.message);
+              this._snackBar.open("tu ne peux pas le supprimer",'',{
+                duration: 1000
+              });
             }
           )
         },

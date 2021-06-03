@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Demande } from 'src/app/model/Demande';
 import { UserService } from 'src/app/user.service';
@@ -11,7 +12,7 @@ import { UserService } from 'src/app/user.service';
 })
 export class DemandClientComponent implements OnInit {
 
-  constructor(private userService: UserService, private routerService: ActivatedRoute) { }
+  constructor(private _snackBar: MatSnackBar, private userService: UserService, private routerService: ActivatedRoute) { }
   dataSource: Demande[] = [];
   panelOpenState = false;
 
@@ -32,7 +33,9 @@ export class DemandClientComponent implements OnInit {
   deleteDemand(id: any) {
     this.userService.deleteDemand(id, this.routerService.snapshot.params.username).subscribe(
       data => {
-        alert("Deleted");
+        this._snackBar.open("supprimée", '', {
+          duration: 1000
+        });
       }, (error: HttpErrorResponse) => {
         alert(error);
       }

@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Reclamation } from 'src/app/model/Reclamation';
 import { Utilisateur } from 'src/app/model/utilisateur';
@@ -18,7 +19,7 @@ export class ReclamationClientComponent implements OnInit {
   dataSource: Reclamation[] = [];
   open: boolean = false;
 
-  constructor(private userService: UserService, private routerService: ActivatedRoute) { }
+  constructor(private _snackBar: MatSnackBar, private userService: UserService, private routerService: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getAllReclamtions();
@@ -40,9 +41,11 @@ export class ReclamationClientComponent implements OnInit {
   }
 
   deleteReclamation(id: any) {
-    this.userService.deleteReclamationById(id,this.routerService.snapshot.params.username).subscribe(
+    this.userService.deleteReclamationById(id, this.routerService.snapshot.params.username).subscribe(
       data => {
-        alert("Deleted");
+        this._snackBar.open("supprimée", '', {
+          duration: 1000
+        });
         this.ngOnInit();
       }, (error: HttpErrorResponse) => {
         alert(error.message);

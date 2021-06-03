@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Publication } from 'src/app/model/Publication';
 import { UserService } from 'src/app/user.service';
@@ -18,7 +19,7 @@ export class PublicationComponent implements OnInit {
   urlImage: any;
 
 
-  constructor(private userService: UserService, private routerService: ActivatedRoute) { }
+  constructor(private _snackBar: MatSnackBar,private userService: UserService, private routerService: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getpublicatioin();
@@ -39,7 +40,10 @@ export class PublicationComponent implements OnInit {
   deletePub(id: any, imageName: any) {
     this.userService.deletePubById(id, this.routerService.snapshot.params.username).subscribe(
       data => {
-        alert("Deleted");
+        this._snackBar.open("supprimée",'',{
+          duration: 1000
+        });
+
         this.ngOnInit();
 
       }
@@ -54,23 +58,5 @@ export class PublicationComponent implements OnInit {
       }
     );
   }
-
-  testDate(date: any): boolean {
-
-    let a = new Date(date);
-    if (date <= a.getFullYear) {
-      console.log(a.getFullYear);
-      console.log(a.getMonth);
-      console.log(a.getDay);
-      console.log(date);
-      return true;
-    }
-    console.log(a.getFullYear);
-    console.log(a.getMonth);
-    console.log(a.getDay);
-    console.log(date);
-    return false;
-  }
-
 
 }

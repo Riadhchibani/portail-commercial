@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { FileImage } from 'src/app/model/FileImage';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DataResponse } from 'src/app/model/DataResponse';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-publication',
@@ -24,7 +25,7 @@ export class AddPublicationComponent implements OnInit {
 
 
 
-  constructor(private userService: UserService, private routerService: ActivatedRoute) { }
+  constructor(private _snackBar: MatSnackBar, private userService: UserService, private routerService: ActivatedRoute) { }
 
   profileFormPub = new FormGroup({
     title: new FormControl(''),
@@ -42,7 +43,9 @@ export class AddPublicationComponent implements OnInit {
 
     this.userService.upload(this.upFile, this.routerService.snapshot.params.username).subscribe(
       data => {
-
+        this._snackBar.open("Ajoutée",'',{
+          duration: 1000
+        });
       }, (error) => {
         alert(error.message);
       }
@@ -62,7 +65,7 @@ export class AddPublicationComponent implements OnInit {
     );
     this.userService.addPublication(publication, this.routerService.snapshot.params.username).subscribe(
       data => {
-        alert("added");
+        
       }, (error) => {
         alert(error.message);
       }

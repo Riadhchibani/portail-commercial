@@ -8,6 +8,7 @@ import { Utilisateur } from 'src/app/model/utilisateur';
 import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { Role } from 'src/app/model/Role';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -25,7 +26,7 @@ interface Roles {
 })
 export class EditUserComponent implements OnInit {
 
-  constructor(public dialog: MatDialog, private routerService: ActivatedRoute, private userService: UserService) { }
+  constructor(private _snackBar: MatSnackBar, public dialog: MatDialog, private routerService: ActivatedRoute, private userService: UserService) { }
   @Input() usernameOutputVerify: string = '';
 
   emailFormControl = new FormControl('', [
@@ -70,7 +71,6 @@ export class EditUserComponent implements OnInit {
     this.userService.findById(id, this.routerService.snapshot.params.usernameAdmin).subscribe(
       data => {
         this.localData = data;
-        console.log(data);
         this.dataTableUser.push(data);
       },
       (error: HttpErrorResponse) => {
@@ -126,12 +126,15 @@ export class EditUserComponent implements OnInit {
     this.userService.updateUser(user, this.routerService.snapshot.params.usernameAdmin)
       .subscribe(
         data => {
-          alert("confirm");
-          //router to go back
+          this._snackBar.open("Supprimée",'',{
+            duration: 1000
+          });
         },
         (error: HttpErrorResponse) => {
-          //window.location.reload();
-          alert(error.message);
+          window.location.reload();
+          this._snackBar.open("Il y a un problème",'',{
+            duration: 1000
+          });
         }
       )
   }

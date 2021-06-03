@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Demande } from 'src/app/model/Demande';
 import { UserService } from 'src/app/user.service';
 import { DataResponse } from 'src/app/model/DataResponse';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-demand',
@@ -15,7 +16,7 @@ import { DataResponse } from 'src/app/model/DataResponse';
 export class AddDemandComponent implements OnInit {
   dataSource: any;
   nomduPro: any | undefined;
-  constructor(private routerService: ActivatedRoute, private userService: UserService) { }
+  constructor(private _snackBar: MatSnackBar, private routerService: ActivatedRoute, private userService: UserService) { }
 
   profileForm = new FormGroup({
     nomproduit: new FormControl(''),
@@ -45,7 +46,9 @@ export class AddDemandComponent implements OnInit {
     if (this.testUser == false) {
       this.userService.addDemandClient(demand, this.routerService.snapshot.params.username).subscribe(
         date => {
-          alert("Added");
+          this._snackBar.open("Ajoutée",'',{
+            duration: 1000
+          });
         },
         (error: HttpErrorResponse) => {
           alert(error.message);

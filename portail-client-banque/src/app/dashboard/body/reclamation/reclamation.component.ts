@@ -1,10 +1,10 @@
-import { Utilisateur } from './../../../model/utilisateur';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Reclamation } from 'src/app/model/Reclamation';
 import { UserService } from 'src/app/user.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-reclamation',
@@ -23,7 +23,7 @@ export class ReclamationComponent implements OnInit {
     responseFrom: new FormControl(''),
   });
 
-  constructor(private userService: UserService, private routerService: ActivatedRoute) { }
+  constructor(private _snackBar: MatSnackBar, private userService: UserService, private routerService: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getAllReclamtions();
@@ -34,7 +34,9 @@ export class ReclamationComponent implements OnInit {
   addResponse(id: any) {
     this.userService.addResponse(id, this.response, this.routerService.snapshot.params.username).subscribe(
       data => {
-       alert(data);
+        this._snackBar.open("Ajoutée",'',{
+          duration: 1000
+        });
       }, (error: HttpErrorResponse) => {
         alert(error.message);
       }
@@ -43,7 +45,6 @@ export class ReclamationComponent implements OnInit {
   }
 
   getAllReclamtions() {
-
     this.userService.getAllReclamation(this.routerService.snapshot.params.username).subscribe(
       data => {
         this.dataSource = data;
@@ -56,14 +57,6 @@ export class ReclamationComponent implements OnInit {
     )
 
   }
-  deleteReclamation(id: any) {
-    this.userService.deleteReclamationById(id, this.routerService.snapshot.params.username).subscribe(
-      data => {
-        alert("Deleted");
-        this.ngOnInit();
-      }, (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    )
-  }
+
+ 
 }

@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-6">
         <mat-form-field appearance="fill">
-          <mat-label>sous famille</mat-label>
+          <mat-label>Catégorie</mat-label>
           <mat-select [(ngModel)]="selectedValue" name="obj">
             <mat-option #databox *ngFor="let obj of objs" [value]="obj.imSousFamillesId" (click)="onSelect(databox.value)">
               {{obj.libelle}}
@@ -32,7 +32,7 @@
           </mat-select>
         </mat-form-field>
         <br>
-        <input type="button" (click)="onclick(data.value, box.value)"  name="add" class="btn btn-primary" value="doner le nom du produit">
+        <input type="button" (click)="onclick(data.value, box.value)"  name="add" class="btn btn-primary" value="Rechercher">
       </div>
       <div class="col-6">
         <mat-form-field appearance="fill">

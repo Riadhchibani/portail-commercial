@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { Reclamation } from 'src/app/model/Reclamation';
 import { Utilisateur } from 'src/app/model/utilisateur';
@@ -14,7 +15,7 @@ import { UserService } from 'src/app/user.service';
 export class AddReclamationComponent implements OnInit {
   userClient: Utilisateur | undefined;
 
-  constructor(private routerService: ActivatedRoute, private userService: UserService) { }
+  constructor(private _snackBar: MatSnackBar, private routerService: ActivatedRoute, private userService: UserService) { }
 
   profileForm = new FormGroup({
     title_reclamation: new FormControl(''),
@@ -45,7 +46,9 @@ export class AddReclamationComponent implements OnInit {
     );
     this.userService.addReclamation(reclamation, this.routerService.snapshot.params.username).subscribe(
       data => {
-        alert("Added");
+        this._snackBar.open("Ajoutée",'',{
+          duration: 1000
+        });
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

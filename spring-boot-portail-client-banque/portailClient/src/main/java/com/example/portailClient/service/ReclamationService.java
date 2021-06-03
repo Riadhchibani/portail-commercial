@@ -56,14 +56,21 @@ public class ReclamationService {
         List<String> listEmailAdminUser = this.utilisateurService.getEmailsAdmin();
         EmailMessage emailmessage = new EmailMessage();
         emailmessage.setSubject("Reclamation");
-        emailmessage.setBody("Reclamation de client :" + reclamation.getUtilisateur().getUsername());
-        emailmessage.setTo_address("riadhchibani144@gmail.com");
+        emailmessage.setBody(reclamation.getUtilisateur().getUsername() + " a ajouté une réclamation");
+        listEmailAdminUser
+                .stream()
+                .filter(
+                        messageemail -> {
+                            emailmessage.setTo_address(messageemail);
+                            try {
+                                sendmail(emailmessage);
+                            } catch (Exception e) {
+                                System.out.println(e.toString());
+                            }
+                            return true;
+                        }
+                ).collect(Collectors.toList());
 
-        try {
-            sendmail(emailmessage);
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
 
         this.reclamationRepository.save(reclamation);
     }
@@ -88,12 +95,16 @@ public class ReclamationService {
     }
 
     public void addResponse(Long idReclamation, String response, String username) {
+        EmailMessage emailmessage = new EmailMessage();
+        emailmessage.setSubject("Reclamation");
+        emailmessage.setBody("votre réclamation a une réponse");
         Utilisateur utilisateur = this.utilisateurService.getUserByUsername(username);
         List<Reclamation> reclamationList = getAllReclamation();
         Reclamation reclamationWithResponse = reclamationList.stream()
                 .filter(
                         reclamation -> {
                             if (reclamation.getId_reclamation() == idReclamation) {
+                                emailmessage.setTo_address(reclamation.getUtilisateur().getEmail());
                                 reclamation.setUtilisateur_admin(utilisateur);
                                 return true;
                             } else return false;
@@ -103,6 +114,11 @@ public class ReclamationService {
                 .get();
         reclamationWithResponse.setReponse(response);
         this.reclamationRepository.save(reclamationWithResponse);
+        try {
+            sendmail(emailmessage);
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
     }
 
     private void sendmail(EmailMessage emailmessage) throws MessagingException {

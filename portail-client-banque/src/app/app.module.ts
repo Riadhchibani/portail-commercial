@@ -62,6 +62,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { AddReclamationComponent } from './client-dashboard/body-client/add-reclamation/add-reclamation.component';
 import { CommandAlertComponent } from './dashboard/demand/command-alert/command-alert.component';
 import { ProductClientComponent } from './client-dashboard/body-client/product-client/product-client.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
@@ -129,7 +130,8 @@ import { ProductClientComponent } from './client-dashboard/body-client/product-c
     MatCardModule,
     MatGridListModule,
     MatExpansionModule,
-    MatStepperModule
+    MatStepperModule,
+    MatSnackBarModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

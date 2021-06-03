@@ -1,18 +1,15 @@
 <mat-toolbar>
-    <span class="example-spacer"></span>
-      <mat-icon >account_circle</mat-icon>
-      <label class="stylabel">Client : {{this.user}}</label>
-    <button mat-button [matMenuTriggerFor]="menu">
-      <mat-icon>settings</mat-icon>
+  <span class="example-spacer"></span>
+  <mat-icon>account_circle</mat-icon>
+  <label class="stylabel">Client : {{this.user}}</label>
+  <button mat-button [matMenuTriggerFor]="menu">
+    <mat-icon>settings</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="take()">
+      <mat-icon>logout</mat-icon>
+      déconnexion
     </button>
-    <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="take()">
-        <mat-icon>info</mat-icon>info
-      </button>
-      <button mat-menu-item (click)="take()">
-        <mat-icon>logout</mat-icon>
-        déconnexion
-      </button>
-    </mat-menu>
-  
-  </mat-toolbar>
+  </mat-menu>
+
+</mat-toolbar>

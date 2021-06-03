@@ -7,6 +7,7 @@ import { Commande } from 'src/app/model/Commande';
 import { UserService } from 'src/app/user.service';
 import { DemandComponent } from '../demand.component';
 import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-command-alert',
@@ -25,7 +26,7 @@ export class CommandAlertComponent implements OnInit {
   test = false;
   valPassword: string = '';
 
-  constructor(private routerService: ActivatedRoute, private userService: UserService, public dialogRef: MatDialogRef<DemandComponent>,
+  constructor(private _snackBar: MatSnackBar, private routerService: ActivatedRoute, private userService: UserService, public dialogRef: MatDialogRef<DemandComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   profileForm = new FormGroup({
@@ -83,6 +84,9 @@ export class CommandAlertComponent implements OnInit {
     this.userService.addCommande(commande, this.data.username).subscribe(
       data => {
         this.commande = data;
+        this._snackBar.open("Ajoutée",'',{
+          duration: 1000
+        });
       }, (error) => {
         alert(error.message);
       }
@@ -93,7 +97,9 @@ export class CommandAlertComponent implements OnInit {
 
     this.userService.deleteCommand(this.commandeTest.id_commande, this.data.username).subscribe(
       data => {
-        alert("deleted");
+        this._snackBar.open("supprimée",'',{
+          duration: 1000
+        });
       }, (err) => {
         alert(err);
       }

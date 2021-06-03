@@ -1,10 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DataResponse } from 'src/app/model/DataResponse';
 import { ObjectResponseData } from 'src/app/model/ObjectResponseData';
 import { UserService } from 'src/app/user.service';
+import {MatPaginator} from '@angular/material/paginator';
+import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
   selector: 'app-produit',
@@ -14,7 +16,7 @@ import { UserService } from 'src/app/user.service';
 export class ProduitComponent implements OnInit {
 
   dataSource: ObjectResponseData[] = [];
-
+   
   displayedColumns: string[] = ['id', 'libelle', 'date_Creation', 'prixVente', 'prixPublic'];
 
 
@@ -50,7 +52,6 @@ export class ProduitComponent implements OnInit {
     this.userService.getDataArticle(this.routerService.snapshot.params.username, res).subscribe(
       data => {
         this.dataSource = data;
-        console.log("data", data);
       }, (error: HttpErrorResponse) => {
         alert(error.message);
       }

@@ -285,7 +285,7 @@ export class UserService {
     let token = localStorage.getItem(username);
     let strToken = 'Bearer ' + token;
     const headers = new HttpHeaders().set('Authorization', strToken);
-    return this.http.put<void>(`${this.usersUrl}/addResponse/${idRec}/${message}`, null, { headers });
+    return this.http.put<void>(`${this.usersUrl}/addResponse/${idRec}/${message}/${username}`, null, { headers });
   }
 
   public getData(token: string, code: string): Observable<ObjectResponseData[]> {
