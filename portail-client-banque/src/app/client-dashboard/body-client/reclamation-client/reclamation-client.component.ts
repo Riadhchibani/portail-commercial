@@ -40,17 +40,24 @@ export class ReclamationClientComponent implements OnInit {
 
   }
 
-  deleteReclamation(id: any) {
-    this.userService.deleteReclamationById(id, this.routerService.snapshot.params.username).subscribe(
-      data => {
-        this._snackBar.open("supprimée", '', {
-          duration: 1000
-        });
-        this.ngOnInit();
-      }, (error: HttpErrorResponse) => {
-        alert(error.message);
-      }
-    )
+  deleteReclamation(id: any, response: any) {
+    if (response != null) {
+      this._snackBar.open("tu ne peux pas le supprimer",'',{
+        duration: 1000
+      });
+    } else if(response == null){
+      this.userService.deleteReclamationById(id, this.routerService.snapshot.params.username).subscribe(
+        data => {
+          this._snackBar.open("supprimée", '', {
+            duration: 1000
+          });
+          this.ngOnInit();
+        }, (error: HttpErrorResponse) => {
+          alert(error.message);
+        }
+      )
+    }
+
   }
 
 }

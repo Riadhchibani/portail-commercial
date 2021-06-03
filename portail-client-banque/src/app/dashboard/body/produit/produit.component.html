@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-6">
       <mat-form-field appearance="fill">
-        <mat-label>sous famille</mat-label>
+        <mat-label>Catégorie</mat-label>
         <mat-select [(ngModel)]="selectedValue" name="obj">
           <mat-option #databox *ngFor="let obj of objs" [value]="obj.imSousFamillesId" (click)="onSelect(databox.value)">
             {{obj.libelle}}

@@ -6,6 +6,7 @@ import { Demande } from 'src/app/model/Demande';
 import { UserService } from 'src/app/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CommandAlertComponent } from './command-alert/command-alert.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-demand',
@@ -19,7 +20,7 @@ export class DemandComponent implements OnInit {
   dataSource: Demande[] = [];
   dataSourceInbox: Demande[] = [];
 
-  constructor(public dialog: MatDialog, private userService: UserService, private routerService: ActivatedRoute) { }
+  constructor(private _snackBar: MatSnackBar, public dialog: MatDialog, private userService: UserService, private routerService: ActivatedRoute) { }
 
   ngOnInit() {
     this.userService.getUserbyUsername(this.routerService.snapshot.params.username).subscribe(
@@ -55,7 +56,7 @@ export class DemandComponent implements OnInit {
     });
     resultDialog.afterClosed().subscribe(
       result => {
-        console.log("here !" + result);
+        
       }
     )
   }
@@ -73,7 +74,9 @@ export class DemandComponent implements OnInit {
   addToAdmin(id: any) {
     this.userService.addAdminDemand(id, this.routerService.snapshot.params.username, this.admin).subscribe(
       data => {
-        alert("Added");
+        this._snackBar.open("Ajoutée",'',{
+          duration: 1000
+        });
         this.ngOnInit();
       }, (error) => {
         alert(error.message);

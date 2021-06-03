@@ -6,6 +6,7 @@ import { Utilisateur } from 'src/app/model/utilisateur';
 import { UserService } from 'src/app/user.service';
 import { Role } from 'src/app/model/Role';
 import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -30,7 +31,7 @@ export class AddUserComponent {
   hide = true;
   matcher = new MyErrorStateMatcher();
 
-  constructor(private userService: UserService, private routerService: ActivatedRoute) { }
+  constructor(private _snackBar: MatSnackBar, private userService: UserService, private routerService: ActivatedRoute) { }
 
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -61,7 +62,9 @@ export class AddUserComponent {
   addUser(user: Utilisateur) {
    this.userService.save(user,this.routerService.snapshot.params.username).subscribe(
       data => {
-        alert('Added');
+        this._snackBar.open("Ajoutée",'',{
+          duration: 1000
+        });
       },
       (error: HttpErrorResponse) => {
         alert(error.message);

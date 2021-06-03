@@ -13,8 +13,8 @@
           </mat-expansion-panel-header>
           <p>Description : {{element.description}}</p>
           <p>Reponse  : <p style="color: green;">{{element.reponse}}</p>
-          <mat-action-row>
-            <button mat-button color="primary" (click)="deleteReclamation(element.id_reclamation)" >Supprimer</button>
+          <mat-action-row *ngIf="false">
+            <button mat-button color="primary" (click)="deleteReclamation(element.id_reclamation,element.reponse)" >Supprimer</button>
           </mat-action-row>
         </mat-expansion-panel>
       </div>
@@ -36,7 +36,7 @@
         <p>Description : {{element.description}}</p>
         <p>Reponse  : {{element.reponse}}</p>
         <mat-action-row>
-          <button mat-button color="primary" (click)="deleteReclamation(element.id_reclamation)" >Supprimer</button>
+          <button mat-button color="primary" (click)="deleteReclamation(element.id_reclamation,element.reponse)" >Supprimer</button>
         </mat-action-row>
       </mat-expansion-panel>
     </div>
