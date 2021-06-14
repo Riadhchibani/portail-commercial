@@ -1,12 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DataResponse } from 'src/app/model/DataResponse';
 import { ObjectResponseData } from 'src/app/model/ObjectResponseData';
 import { UserService } from 'src/app/user.service';
-import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-produit',
@@ -15,10 +15,13 @@ import {MatTableDataSource} from '@angular/material/table';
 })
 export class ProduitComponent implements OnInit {
 
-  dataSource: ObjectResponseData[] = [];
-   
+  dataSource = new MatTableDataSource<any>();
+
   displayedColumns: string[] = ['id', 'libelle', 'date_Creation', 'prixVente', 'prixPublic'];
 
+
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private routerService: ActivatedRoute, private userService: UserService) { }
 
@@ -39,19 +42,18 @@ export class ProduitComponent implements OnInit {
     this.userService.getSousFamille(this.routerService.snapshot.params.username).subscribe(
       data => {
         this.objs = data;
-        this.objs.push("...");
       }, (error: HttpErrorResponse) => {
         alert(error.message);
       }
     )
   }
-  
+
   onclick(productName: any, peo: any) {
     let res = new DataResponse(this.valueOf, productName, peo);
-    console.log(res);
     this.userService.getDataArticle(this.routerService.snapshot.params.username, res).subscribe(
-      data => {
-        this.dataSource = data;
+      data => {//------------------------------------------------------------------------------------------
+        this.dataSource = new MatTableDataSource<any>(data);
+        this.dataSource.paginator = this.paginator;
       }, (error: HttpErrorResponse) => {
         alert(error.message);
       }

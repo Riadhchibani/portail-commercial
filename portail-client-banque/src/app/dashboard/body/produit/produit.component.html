@@ -21,9 +21,9 @@
     </div>
   </div>
 </div><br>
-<div class="container">
+<div class="mat-elevation-z8">
 
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" >
     <!-- ID Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> id </th>
@@ -52,12 +52,9 @@
     </ng-container>
 
 
-
-    <!-- Name Column -->
-
-
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
   </table>
+  <mat-paginator [pageSize]="4" showFirstLastButtons></mat-paginator>
 </div>

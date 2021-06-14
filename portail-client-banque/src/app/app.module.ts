@@ -63,6 +63,8 @@ import { AddReclamationComponent } from './client-dashboard/body-client/add-recl
 import { CommandAlertComponent } from './dashboard/demand/command-alert/command-alert.component';
 import { ProductClientComponent } from './client-dashboard/body-client/product-client/product-client.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 
 
@@ -131,7 +133,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatGridListModule,
     MatExpansionModule,
     MatStepperModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatPaginatorModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

@@ -1,8 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { Utilisateur } from 'src/app/model/utilisateur';
 import { UserService } from 'src/app/user.service';
@@ -15,12 +17,13 @@ import { PasswordDialogComponent } from '../../edit-user/password-dialog/passwor
 })
 export class ClientTableComponent implements OnInit {
 
-  dataSource: Utilisateur[] = [];
+  dataSource = new MatTableDataSource<any>();
 
   @Input() usernameAdminTable: string = '';
 
   displayedColumns: string[] = ['id', 'nom', 'prenom', 'email', 'age', 'date', 'tel', 'username', 'password', 'code', 'role', 'etat', 'edit'];
 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private _snackBar: MatSnackBar, public dialog: MatDialog, private routerService: ActivatedRoute, private userService: UserService) { }
 
@@ -65,7 +68,8 @@ export class ClientTableComponent implements OnInit {
   getUsers() {
     this.userService.findAll(this.routerService.snapshot.params.username).subscribe(
       data => {
-        this.dataSource = data;
+        this.dataSource = new MatTableDataSource<any>(data);
+        this.dataSource.paginator = this.paginator;
       }
     )
   }

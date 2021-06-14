@@ -1,5 +1,5 @@
-<div class="container">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<div class="mat-elevation-z8" style="width: 104%">
+    <table mat-table [dataSource]="dataSource">
       <!-- ID Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID </th>
@@ -81,4 +81,5 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
     </table>
+    <mat-paginator class="pagCss" [pageSize]="8" showFirstLastButtons></mat-paginator>
   </div>

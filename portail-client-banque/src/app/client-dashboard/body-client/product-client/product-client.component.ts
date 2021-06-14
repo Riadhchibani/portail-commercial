@@ -1,10 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { DataResponse } from 'src/app/model/DataResponse';
 import { ImArticle } from './../../../model/ImFamilles';
 import { UserService } from 'src/app/user.service';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 
 @Component({
@@ -14,12 +16,13 @@ import { UserService } from 'src/app/user.service';
 })
 export class ProductClientComponent implements OnInit {
 
-  dataSource: ImArticle[] = [];
-
   displayedColumns: string[] = ['id', 'libelle'];
 
 
   constructor(private routerService: ActivatedRoute, private userService: UserService) { }
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  dataSource = new MatTableDataSource<any>();
 
   objs: any[] | undefined;
 
@@ -50,8 +53,8 @@ export class ProductClientComponent implements OnInit {
     console.log(res);
     this.userService.getDataArticle(this.routerService.snapshot.params.username, res).subscribe(
       data => {
-        this.dataSource = data;
-        console.log("data", data);
+        this.dataSource = new MatTableDataSource<any>(data);
+        this.dataSource.paginator = this.paginator;
       }, (error: HttpErrorResponse) => {
         alert(error.message);
       }

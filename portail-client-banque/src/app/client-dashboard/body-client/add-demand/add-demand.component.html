@@ -24,7 +24,7 @@
         </mat-form-field>
         <br>
         <mat-form-field appearance="fill" *ngIf="testProd">
-          <mat-label>sous famille</mat-label>
+          <mat-label>Produits</mat-label>
           <mat-select [(ngModel)]="selectedValue" name="obj">
             <mat-option #datab *ngFor="let obj of dataObj" [value]="obj.libelle" (click)="pickOb(datab.value)">
               {{obj.libelle}}

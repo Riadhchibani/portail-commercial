@@ -25,16 +25,12 @@ public class ImFamillesService {
     }
 
     public List<ImArticle> getProductCode(DataResponse dataResponse) {
-        List<ImArticle> list = this.imFamillesRepository.getData(
+        List<ImArticle> list = new ArrayList();
+        list = this.imFamillesRepository.getData(
                 dataResponse.getId_data(),
-                dataResponse.getCode_data());
-        List<ImArticle> listLibelle = this.imFamillesRepository.getDataByLibelle(
-                dataResponse.getId_data(),
+                dataResponse.getCode_data(),
                 dataResponse.getLibelle_data());
-        return (!dataResponse.getLibelle_data().isEmpty() && !dataResponse.getCode_data().isEmpty() ? list
-                : (!dataResponse.getCode_data().isEmpty() ? list
-                : !dataResponse.getLibelle_data().isEmpty() ? listLibelle
-                : new ArrayList<>()));
+        return list;
     }
 
 }

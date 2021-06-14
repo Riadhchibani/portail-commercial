@@ -11,9 +11,6 @@ import java.util.List;
 
 @Repository
 public interface ImFamillesRepository extends JpaRepository<ImFamilles, Long> {
-    @Query("FROM ImArticle a, ImSousFamilles sf WHERE a.codeArticle = :code_data and sf.imSousFamillesId = a.imSousFamillesId and sf.imSousFamillesId = :id_Data")
-    List<ImArticle> getData(@Param("id_Data") Long id_Data, @Param("code_data") String code_data);
-
-    @Query("FROM ImArticle a, ImSousFamilles sf WHERE a.libelle LIKE %:libelle_data% and sf.imSousFamillesId = a.imSousFamillesId and sf.imSousFamillesId = :id_Data")
-    List<ImArticle> getDataByLibelle(@Param("id_Data") Long id_Data, @Param("libelle_data") String libelle_data);
+    @Query("FROM ImArticle a, ImSousFamilles sf WHERE (sf.imSousFamillesId = :id_Data and sf.imSousFamillesId = a.imSousFamillesId) and (a.codeArticle = :code_data or a.libelle LIKE %:libelle_data%)")
+    List<ImArticle> getData(@Param("id_Data") Long id_Data, @Param("code_data") String code_data, @Param("libelle_data") String libelle_data);
 }
